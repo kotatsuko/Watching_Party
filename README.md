@@ -22,7 +22,7 @@
 
 ## 設計書
 ### ER図
-![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA.jpg)
+![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching_Party-ER%E5%9B%B3.jpg)
 
 ## 主な機能
  - ログイン機能
