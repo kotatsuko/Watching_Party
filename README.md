@@ -1,24 +1,35 @@
-# README
+# <Watchin Party>
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## サイト概要
+同時視聴をしたい人を募り、リアルタイムコメント機能で視聴をより楽しむコミュニティサイト
+### サイトテーマ
+- グループ機能で同時視聴をするメンバーを集める
+- 投稿機能で同時視聴するメンバーを募ったり、作品の感想を投稿できる
+- リアルタイムコメント機能で、感想を共有し合う
 
-Things you may want to cover:
 
-* Ruby version
+### テーマを選んだ理由
+動画コンテンツを同時視聴を使いより楽しむため
 
-* System dependencies
+### ターゲットユーザ
+動画コンテンツを複数人で楽しみたいユーザー
 
-* Configuration
+### 主な利用シーン
+- 同時視聴をしたいとき
+- 動画コンテンツの感想を共有したいとき
+- 気になる動画の感想を見たいとき
 
-* Database creation
+## 設計書
+### ER図
+![ER図](app/assets/images/ポートフォリオ.jpg)
 
-* Database initialization
+## 開発環境
+- OS：Linux(CentOS)
+- 言語：HTML,CSS,JavaScript,Ruby,SQL
+- フレームワーク：Ruby on Rails
+- JSライブラリ：jQuery
+- IDE：Cloud9
 
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## 使用素材
+- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
+- 使用しない場合は、使用素材の項目をREADMEから削除してください。
