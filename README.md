@@ -21,7 +21,7 @@
 
 ## 設計書
 ### ER図
-![ER図](app/assets/images/ポートフォリオ.jpg)
+![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA.jpg)
 
 ## 開発環境
 - OS：Linux(CentOS)
