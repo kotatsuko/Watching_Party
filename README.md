@@ -1,4 +1,5 @@
 # <Watchin Party>
+![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/%E3%83%98%E3%82%A4%E3%83%9E%E3%83%B3%20%E3%83%94%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E3%82%BA.png)
 
 ## サイト概要
 同時視聴をしたい人を募り、リアルタイムコメント機能で視聴をより楽しむコミュニティサイト
