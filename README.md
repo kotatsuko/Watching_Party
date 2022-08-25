@@ -1,5 +1,5 @@
-# <Watchin Party>
-![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/%E3%83%98%E3%82%A4%E3%83%9E%E3%83%B3%20%E3%83%94%E3%82%AF%E3%83%81%E3%83%A3%E3%83%BC%E3%82%BA.png)
+# Watching Party
+![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching%20Party.png)
 
 ## サイト概要
 同時視聴をしたい人を募り、リアルタイムコメント機能で視聴をより楽しむコミュニティサイト
@@ -24,6 +24,45 @@
 ### ER図
 ![ER図](https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/%E3%83%9D%E3%83%BC%E3%83%88%E3%83%95%E3%82%A9%E3%83%AA%E3%82%AA.jpg)
 
+## 主な機能
+ - ログイン機能
+   - ユーザー名
+   - メールアドレス
+   - パスワード
+   - プロフィール画像
+   - 退会ステータス
+ - 投稿機能
+   - 本文
+   - タグ
+ - 投稿いいね機能
+ - 投稿コメント機能
+ - フォロー機能
+ - グループ機能
+   - グループオーナー
+   - グループ名
+   - グループ説明
+   - タグ
+   - 動画タイプ
+   - 視聴作品名
+   - 視聴時間
+   - 視聴開始時間
+ - グループオーナー機能
+   - グループ情報の変更
+   - グループメンバーの削除
+   - グループコメントの削除
+ - グループ管理者機能
+ - コメント機能
+ - グループ、投稿検索機能
+ - ゲストログイン機能
+   - 投稿、グループの閲覧
+ - 管理者機能
+   - ユーザー情報編集
+   - ユーザー退会
+   - 投稿削除
+   - グループ作成
+   - グループ削除
+
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
@@ -32,5 +71,4 @@
 - IDE：Cloud9
 
 ## 使用素材
-- 外部サービスの画像素材・音声素材を使用した場合は、必ずサービス名とURLを明記してください。
-- 使用しない場合は、使用素材の項目をREADMEから削除してください。
+- Canva(https://www.canva.com/)
