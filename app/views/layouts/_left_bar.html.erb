@@ -1,0 +1,26 @@
+<div class = "logo">
+  <%= link_to root_path do %>
+    <img src = "../../assets/images/logo.png">
+  <% end %>
+</div>
+<div class = "main-menu">
+  <%= link_to root_path do %>
+   <p>ホーム</p>
+  <% end %>
+  <%= link_to groups_path do %>
+   <p>グループ一覧</p>
+  <% end %>
+  <%= link_to posts_path do %>
+   <p>投稿一覧</p>
+  <% end %>
+  <%= link_to new_post_path do %>
+   <p>グループを作る</p>
+  <% end %>
+  <%= link_to new_group_path do %>
+   <p>投稿する</p>
+  <% end %>
+</div>
+<% if end_user_signed_in? %>
+  <div class = "end_user_info">
+    
+  </div>
