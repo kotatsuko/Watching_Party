@@ -1,21 +1,81 @@
-<div>
+<div class = "post">
   <div>
-    <%= link_to end_user_path(@post.end_user) do %>
+    <div>
+      <%= link_to end_user_path(@post.end_user) do %>
+        <div class = "d-inline-block">
+          <%= image_tag @post.end_user.get_end_user_image, :width => '50', :height => '50' %>
+        </div>
+        <div class = "d-inline-block">
+          <%= @post.end_user.name %>
+        </div>
+      <% end %>
+    </div>
+    <div>
       <div class = "d-inline-block">
-        <%= image_tag @post.end_user.get_end_user_image, :width => '50', :height => '50' %>
+        <% if @post.favorited_by?(current_end_user) %>
+          <p>
+            <%= link_to post_post_favorites_path(@post), method: :delete do %>
+              ♥<%= @post.post_favorites.count %> いいね
+            <% end %>
+          </p>
+          <% else %>
+          <p>
+            <%= link_to post_post_favorites_path(@post), method: :post do %>
+              ♡<%= @post.post_favorites.count %> いいね
+            <% end %>
+          </p>
+        <% end %>
       </div>
-      <div class = "d-inline-block">
-        <%= @post.end_user.name %>
+    <div class = "d-inline-block ml-3">
+      <%= @post.post_comments.count %>コメント
+    </div>
+    <div class = "d-inline-block ml-3">
+      <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+    </div>
+    <% if @post.end_user == current_end_user %>
+      <div class = "d-inline-block ml-5">
+        <%= link_to "編集する", edit_post_path(@post), class:"btn btn-success" %>
+        <%= link_to "削除する", post_path(@post), method: :delete, class:"btn btn-danger" %>
       </div>
     <% end %>
+    </div>
   </div>
+
   <div class = "mt-3">
     <%= @post.body %>
   </div>
 </div>
-<% if @post.end_user == current_end_user %>
-<div class = "mt-5">
-  <%= link_to "編集する", edit_post_path(@post), class:"btn btn-success" %>
-  <%= link_to "削除する", post_path(@post), method: :delete, class:"btn btn-danger" %>
+
+<div class = "post_comments mt-5">
+  <div class = "post_comment_form">
+    <%= form_with model: [@post,@post_comment] do |f| %>
+      <%= f.text_area :body , size: "90x5" %>
+      <%= f.submit "コメント", class:"btn btn-primary" %>
+    <% end %>
+  </div>
+  <div class = "post_comments_index mt-5">
+    <% @post_comments.each do |post_comment| %>
+      <div class = "mt-3">
+        <%= link_to end_user_path(post_comment.end_user) do %>
+          <div class = "d-inline-block">
+            <%= image_tag post_comment.end_user.get_end_user_image, :width => '50', :height => '50' %>
+          </div>
+          <div class = "d-inline-block">
+            <%= post_comment.end_user.name %>
+          </div>
+        <% end %>
+        <div class = "d-inline-block ml-5">
+          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+        </div>
+        <% if post_comment.end_user == current_end_user %>
+          <div class = "d-inline-block ml-5">
+            <%= link_to "削除する", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+      <div class = "mt-3">
+        <%= post_comment.body %>
+      </div>
+    <% end %>
+  </div>
 </div>
-<% end %>

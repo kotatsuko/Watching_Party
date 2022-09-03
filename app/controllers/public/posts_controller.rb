@@ -21,6 +21,8 @@ class Public::PostsController < ApplicationController
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
     @post = Post.find(params[:id])
+    @post_comment = PostComment.new
+    @post_comments = @post.post_comments
   end
 
   def index
@@ -58,6 +60,9 @@ class Public::PostsController < ApplicationController
     @post.destroy
     redirect_to end_user_path(@post.end_user)
   end
+
+
+
 
 
 
