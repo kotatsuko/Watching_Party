@@ -1,0 +1,21 @@
+<div>
+  <div>
+    <%= link_to end_user_path(@post.end_user) do %>
+      <div class = "d-inline-block">
+        <%= image_tag @post.end_user.get_end_user_image, :width => '50', :height => '50' %>
+      </div>
+      <div class = "d-inline-block">
+        <%= @post.end_user.name %>
+      </div>
+    <% end %>
+  </div>
+  <div class = "mt-3">
+    <%= @post.body %>
+  </div>
+</div>
+<% if @post.end_user == current_end_user %>
+<div class = "mt-5">
+  <%= link_to "編集する", edit_post_path(@post), class:"btn btn-success" %>
+  <%= link_to "削除する", post_path(@post), method: :delete, class:"btn btn-danger" %>
+</div>
+<% end %>

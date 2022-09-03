@@ -9,9 +9,22 @@
 </div>
 <div class = "users_posts mt-5">
   <% @posts.each do |post| %>
-   <div>
-     <%= image_tag post.end_user.get_end_user_image %><%= post.end_user.name %>
-     <%= post.body %>
-   </div>
+    <div>
+      <div>
+        <%= link_to end_user_path(post.end_user) do %>
+          <div class = "d-inline-block">
+            <%= image_tag post.end_user.get_end_user_image, :width => '50', :height => '50' %>
+          </div>
+          <div class = "d-inline-block">
+            <%= post.end_user.name %>
+          </div>
+        <% end %>
+      </div>
+      <div>
+        <%= link_to post_path(post) do %>
+          <%= post.body %>
+        <% end %>
+      </div>
+    </div>
   <% end %>
 </div>
