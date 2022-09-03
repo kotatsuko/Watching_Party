@@ -1,0 +1,5 @@
+<h1>本当に退会しますか？</h1>
+<div>
+  <%= link_to "ユーザーページに戻る", end_user_path(@current_end_user), class:"btn btn-success" %>
+  <%= link_to "退会する", end_user_deleted_path(@current_end_user), method: :patch, class:"btn btn-danger" %>
+</div>

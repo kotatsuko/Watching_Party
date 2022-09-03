@@ -3,11 +3,13 @@
 class Public::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
-
+  
+  layout "sign_application"
+  
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+   #def new
+   #  super
+   #end
 
   # POST /resource
   # def create

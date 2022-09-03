@@ -33,6 +33,7 @@ Rails.application.routes.draw do
       get "my_posts" => "end_users#my_posts"
       get "my_groups" => "end_users#my_groups"
       resource :relationships, only: [:create, :destroy]
+      get "confirm" => "end_users#confirm"
       patch "deleted" => "end_users#deleted"
       get 'followings' => 'relationships#followings', as: 'followings'
       get 'followers' => 'relationships#followers', as: 'followers'

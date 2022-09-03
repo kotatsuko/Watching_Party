@@ -1,0 +1,19 @@
+<div class = "starting_soon">
+  <h2>もうすぐ開始</h2>
+  <% @starting_soon_groups.each do |group| %>
+    <div>
+      <div>
+        <%= image_tag group.get_group_image %><%= group.name %>
+      </div>
+      <div>
+        『<%= group.title %>』
+      </div>
+      <div>
+        <%= group.viewing_time %>分
+      </div>
+      <div>
+        <%= group.start_time.strftime('%Y-%m-%d %H:%M') %>
+      </div>
+    </div>
+  <% end %>
+</div>

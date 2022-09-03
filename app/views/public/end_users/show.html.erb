@@ -1,0 +1,17 @@
+<div class = "end_user_introduction w-100 bg-light">
+  <div class = "d-inline-block">
+    <%= image_tag @end_user.get_end_user_image, :width => '100', :height => '100' %>
+  </div>
+  <div class = "d-inline-block">
+    <%= @end_user.name %><br>
+    <%= @end_user.introduction %>
+  </div>
+</div>
+<div class = "users_posts mt-5">
+  <% @posts.each do |post| %>
+   <div>
+     <%= image_tag post.end_user.get_end_user_image %><%= post.end_user.name %>
+     <%= post.body %>
+   </div>
+  <% end %>
+</div>
