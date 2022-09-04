@@ -20,5 +20,19 @@ class EndUser < ApplicationRecord
   def get_end_user_image
     (end_user_image.attached?) ? end_user_image : 'no_image.jpg'
   end
+  
+  
+  
+  def follow(end_user_id)
+    relationships.create(followed_id: end_user_id)
+  end
+
+  def unfollow(end_user_id)
+    relationships.find_by(followed_id: end_user_id).destroy
+  end
+
+  def following?(end_user)
+    followings.include?(end_user)
+  end
 
 end

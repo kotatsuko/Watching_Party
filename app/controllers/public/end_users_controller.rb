@@ -4,10 +4,10 @@ class Public::EndUsersController < ApplicationController
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
     @end_user = EndUser.find(params[:id])
-    if @end_user == current_end_user
-      @posts = Post.where(end_user_id: [current_end_user.id,current_end_user.following_ids]).order(created_at: :desc)
+    if @end_user == @current_end_user
+      @posts = Post.where(end_user_id: [@current_end_user.id, *@current_end_user.followings.pluck(:id)]).order(created_at: :desc)
     else
-      @post = @end_user.posts.order(created_at: :desc)
+      @posts = @end_user.posts.order(created_at: :desc)
     end
   end
 
@@ -38,7 +38,7 @@ class Public::EndUsersController < ApplicationController
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
     post_favorites_ids = PostFavorite.where(end_user_id:@current_end_user.id).pluck(:post_id)
-    @posts = Post.find(post_favorites_ids).order(created_at: :desc)
+    @posts = Post.order(created_at: :desc).find(post_favorites_ids)
   end
 
   def my_groups
