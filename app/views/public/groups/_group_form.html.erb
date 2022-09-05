@@ -1,0 +1,46 @@
+<div class = "group_form mt-5">
+<%= form_with model:group do |f| %>
+  <div class="field">
+    <%= f.label :name, "グループネーム" %>
+    <%= f.text_field :name, size: "60x5" %>
+  </div>
+
+  <div>
+    <%= f.label :introduction, "グループ紹介　" %>
+    <%= f.text_area :introduction, size: "80x5" %>
+  </div>
+
+  <div class="field">
+    <%= f.label :title, "作品名　　　　" %>
+    <%= f.text_field :title, size: "60x5" %>
+  </div>
+
+  <div>
+    <%= f.label :genre, "作品タイプ　　" %>
+    <%= f.select :genre,  Group.genres.keys.to_a, {} %>
+  </div>
+
+  <div>
+    <%= f.label :viewing_time, "視聴時間　　　" %>
+    <%= f.number_field :viewing_time, in: 10..600, step:5 %>
+  </div>
+
+  <div>
+    <%= f.label :start_time, "開始時間　　　" %>
+    <%= f.datetime_field :start_time %>
+  </div>
+
+  <div>
+    <%= f.label :group_image, "グループ画像　" %>
+    <%= f.file_field :group_image, accept: "image/*" %>
+  </div>
+
+  <div class="actions mt-5" >
+    <% if group.new_record? %>
+      <%= f.submit "グループを作る",class:"btn btn-primary" %>
+    <% else %>
+      <%= f.submit "変更する",class:"btn btn-success" %>
+    <% end %>
+  </div>
+<% end %>
+</div>

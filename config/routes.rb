@@ -50,6 +50,8 @@ Rails.application.routes.draw do
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
     resources :groups do
+      get "join" => "groups#join"
+      delete "leave" => "groups#leave"
       resources :group_comments, only: [:create, :destroy]
     end
 

@@ -10,5 +10,13 @@ class Group < ApplicationRecord
   def get_group_image
     (group_image.attached?) ? group_image : 'no_image.jpg'
   end
+  
+  def watching?
+    Time.now.between?(self.start_time, self.end_time)
+  end
+
+
+
+  enum genre: { テレビ番組: 0, インターネットコンテンツ: 1, dvd_blu_ray: 2 }
 
 end

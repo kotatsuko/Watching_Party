@@ -3,6 +3,7 @@ class Public::PostsController < ApplicationController
   def new
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @post = Post.new
   end
 
@@ -13,6 +14,9 @@ class Public::PostsController < ApplicationController
       redirect_to post_path(@post)
     else
       @posts = Post.all.order(created_at: :desc)
+      @current_end_user = current_end_user
+      @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+      @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
       render 'index'
     end
   end
@@ -20,6 +24,7 @@ class Public::PostsController < ApplicationController
   def show
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @post = Post.find(params[:id])
     @post_comment = PostComment.new
     @post_comments = @post.post_comments
@@ -28,12 +33,14 @@ class Public::PostsController < ApplicationController
   def index
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @posts = Post.all.order(created_at: :desc)
   end
 
   def popular_index
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
     @posts = Post.includes(:post_favorites).
@@ -46,6 +53,7 @@ class Public::PostsController < ApplicationController
   def edit
     @current_end_user = current_end_user
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @post = Post.find(params[:id])
   end
 
