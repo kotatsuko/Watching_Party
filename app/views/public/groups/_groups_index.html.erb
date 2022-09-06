@@ -1,4 +1,4 @@
-<div class = "groups_list mt-5">
+<div class = "groups_list h-75 overflow-auto">
   <% groups.each do |group| %>
     <div class = "bg-light mt-3">
       <div class = "d-inline-block w-75">
@@ -14,6 +14,13 @@
         </div>
         <div>
           視聴作品：『<%= group.title %>』
+        </div>
+        <div>
+          <% group.tags.each do |tag| %>
+            <%= link_to tag_search_path(tag.id) do %>
+              <%= tag.name %>(<%= tag.groups.count %>)
+            <% end %>
+          <% end %>
         </div>
       </div>
       <div class = "d-inline-block text-right">

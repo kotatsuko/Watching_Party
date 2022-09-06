@@ -18,6 +18,15 @@
     <tr>
       <td><%= group.start_time.strftime('%Y-%m-%d %H:%M') %>～　<%= group.viewing_time %>分</td>
     </tr>
+    <tr>
+      <td>
+        <% group.tags.each do |tag| %>
+          <%= link_to tag_search_path(tag.id) do %>
+            <%= tag.name %>(<%= tag.groups.count %>)
+          <%end %>
+        <% end %>
+      </td>
+    </tr>
   </tbody>
 </table>
 <div class = "overflow-auto">

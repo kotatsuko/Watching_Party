@@ -1,11 +1,10 @@
 <h2>
   "<%= @word %>"が含まれる<%= @data_type %>
 </h2>
-<div calss = "results">
-  <div>
-    <% @results.each do |result| %>
-      <div>
-        
-      </div>
-  </div>
-</div>
+<% if @groups.present? %>
+  <%= render "public/groups/groups_index", groups:@groups %>
+<% elsif @posts.present? %>
+  <%= render "public/posts/posts_index", posts:@posts %>
+<% elsif @end_users.present? %>
+  <%= render "public/relationships/end_users_list", end_users:@end_users %>
+<% end %>

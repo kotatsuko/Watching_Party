@@ -1,5 +1,5 @@
 <% end_users.each do |end_user| %>
-  <div class = "end_user_introduction w-100 bg-light">
+  <div class = "end_user_introduction w-100 bg-light mt-3">
     <div class = "d-inline-block">
       <%= link_to end_user_path(end_user) do %>
         <%= image_tag end_user.get_end_user_image, :width => '100', :height => '100' %>

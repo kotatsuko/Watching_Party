@@ -56,8 +56,8 @@ Rails.application.routes.draw do
       resources :group_comments, only: [:create, :destroy]
     end
 
+    get "tag_search/:id" => "searches#tag_search", as: "tag_search"
     get "search" => "searches#search"
-    get "search" => "searches#tag_search"
 
   end
 

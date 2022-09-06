@@ -7,7 +7,9 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.end_user_id = current_end_user.id
+    tag_list=params[:post][:tag_name].split(nil)
     if @post.save
+      @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
       @posts = Post.all.order(created_at: :desc)

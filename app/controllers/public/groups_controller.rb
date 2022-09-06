@@ -9,7 +9,9 @@ class Public::GroupsController < ApplicationController
     @group.end_time = params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60)
     @group.owner_user_id = current_end_user.id
     @group.end_users << current_end_user
+    tag_list=params[:group][:tag_name].split(nil)
     if @group.save
+      @group.save_tag(tag_list)
       redirect_to group_path(@group)
     else
       render "new"

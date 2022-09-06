@@ -35,6 +35,11 @@
     <%= f.file_field :group_image, accept: "image/*" %>
   </div>
 
+  <div>
+    <%= f.label :tag_name, "タグ　　　　　"%>
+    <%= f.text_field :tag_name, placeholder:"スペースで区切りを入れると複数登録できます" , size: "60x5" %>
+  </div>
+
   <div class="actions mt-5" >
     <% if group.new_record? %>
       <%= f.submit "グループを作る",class:"btn btn-primary" %>

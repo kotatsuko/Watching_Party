@@ -1,0 +1,12 @@
+<div style = "height:45vh;">
+  <h3>"<%= @tag.name %>"のグループ</h3>
+  <div class = "h-100 overflow-auto">
+    <%= render "public/groups/groups_index", groups:@groups %>
+  </div>
+</div>
+<div style = "height:45vh;">
+  <h3>"<%= @tag.name %>"の投稿</h3>
+  <div class = "h-100 overflow-auto">
+    <%= render "public/posts/posts_index", posts:@posts %>
+  </div>
+</div>
