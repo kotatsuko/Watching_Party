@@ -1,3 +1,12 @@
-<h1><%= @end_user.name %>のフォロワー</h1>
+<h1>
+  <% if @end_user == @current_end_user %>
+    フォロワー
+  <% else %>
+    <%= link_to end_user_path(@end_user) do %>
+      <%= @end_user.name %>
+    <% end %>
+    のフォロワー
+  <% end %>
+</h1>
 
 <%= render "follow_list", end_users:@end_users, current_end_user:@current_end_user %>

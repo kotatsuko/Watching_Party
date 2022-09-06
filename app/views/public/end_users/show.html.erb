@@ -14,6 +14,9 @@
         <%= link_to end_user_followers_path(@end_user) do %>
           <%= @end_user.followers.count %>フォロワー
         <% end %>
+        <%= link_to end_user_my_groups_path(@end_user) do %>
+          <%= @end_user.groups.count %>グループ参加中
+        <% end %>
       </div>
       <div class = "d-inline-block">
         <% if @end_user != @current_end_user %>

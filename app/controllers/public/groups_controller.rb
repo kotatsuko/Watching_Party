@@ -1,46 +1,33 @@
 class Public::GroupsController < ApplicationController
 
   def new
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @group = Group.new
   end
 
   def create
     @group = Group.new(group_params)
-    require "date"
     @group.end_time = params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60)
     @group.owner_user_id = current_end_user.id
     @group.end_users << current_end_user
     if @group.save
       redirect_to group_path(@group)
     else
-      @current_end_user = current_end_user
-      @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-      @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
       render "new"
     end
   end
 
   def index
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @groups = Group.all.order(created_at: :desc)
   end
 
   def show
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @group = Group.find(params[:id])
+    @group_comment = GroupComment.new
+    @group_comments = @group.group_comments.order(created_at: :desc)
+    render :layout => "group_show_application"
   end
 
   def edit
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @group = Group.find(params[:id])
   end
 
@@ -58,27 +45,19 @@ class Public::GroupsController < ApplicationController
   end
 
   def popular_index
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
+
   end
 
   def start_index
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
+
   end
 
   def long_index
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
+
   end
 
   def shor_index
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
+
   end
 
   def join

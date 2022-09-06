@@ -1,9 +1,6 @@
 class Public::EndUsersController < ApplicationController
 
   def show
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @end_user = EndUser.find(params[:id])
     if @end_user == @current_end_user
       @posts = Post.where(end_user_id: [@current_end_user.id, *@current_end_user.followings.pluck(:id)]).order(created_at: :desc)
@@ -13,9 +10,6 @@ class Public::EndUsersController < ApplicationController
   end
 
   def edit
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @end_user = EndUser.find(params[:id])
   end
 
@@ -26,9 +20,7 @@ class Public::EndUsersController < ApplicationController
   end
 
   def confirm
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
+
   end
 
   def deleted
@@ -38,24 +30,16 @@ class Public::EndUsersController < ApplicationController
   end
 
   def my_favorites
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     post_favorites_ids = PostFavorite.where(end_user_id:@current_end_user.id).pluck(:post_id)
     @posts = Post.order(created_at: :desc).find(post_favorites_ids)
   end
 
   def my_groups
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
-    @groups = current_end_user.groups.order(start_time: :desc)
+    @end_user = EndUser.find(params[:end_user_id])
+    @groups = @end_user.groups.order(start_time: :desc)
   end
 
   def my_posts
-    @current_end_user = current_end_user
-    @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
-    @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
     @posts = current_end_user.posts.order(created_at: :desc)
   end
 

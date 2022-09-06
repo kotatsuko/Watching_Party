@@ -1,0 +1,41 @@
+<div>
+    <%= image_tag group.get_group_image, :width => '200', :height => '200' %>
+</div>
+<table class = "table table-bordered">
+  <tbody>
+    <tr>
+      <td><%= group.name %></td>
+    </tr>
+    <tr>
+      <td><%= group.introduction %></td>
+    </tr>
+    <tr>
+      <td>『<%= group.title %>』</td>
+    </tr>
+    <tr>
+      <td><%= group.genre %></td>
+    </tr>
+    <tr>
+      <td><%= group.start_time.strftime('%Y-%m-%d %H:%M') %>～　<%= group.viewing_time %>分</td>
+    </tr>
+  </tbody>
+</table>
+<div class = "overflow-auto">
+  <h4>メンバー</h4>
+  <div>
+    <% group.end_users.each do |end_user| %>
+      <div class = "mt-1">
+        <div class = "d-inline-block">
+          <%= link_to end_user_path(end_user) do %>
+            <%= image_tag end_user.get_end_user_image, :width => '50', :height => '50' %>
+          <% end %>
+        </div>
+        <div class = "d-inline-block">
+          <%= link_to end_user_path(end_user) do %>
+            <%= end_user.name %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

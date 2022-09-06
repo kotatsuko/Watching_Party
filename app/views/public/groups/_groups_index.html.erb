@@ -3,10 +3,14 @@
     <div class = "bg-light mt-3">
       <div class = "d-inline-block w-75">
         <div class = "d-inline-block">
-          <%= image_tag group.get_group_image, :width => '50', :height => '50' %>
+          <%= link_to group_path(group) do %>
+            <%= image_tag group.get_group_image, :width => '50', :height => '50' %>
+          <% end %>
         </div>
         <div class = "d-inline-block">
-          <%= group.name %>
+          <%= link_to group_path(group) do %>
+            <%= group.name %>
+          <% end %>
         </div>
         <div>
           視聴作品：『<%= group.title %>』

@@ -1,3 +1,12 @@
-<h1>マイグループ</h1>
+<% if @end_user == @current_end_user %>
+  <h1>マイグループ</h1>
+<% else %>
+  <h1>
+    <%= link_to end_user_path(@end_user) do %>
+      <%= @end_user.name %>
+    <% end %>
+    が参加中のグループ
+  </h1>
+<% end %>
 
 <%= render "groups_index", groups:@groups %>

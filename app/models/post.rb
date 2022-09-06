@@ -12,4 +12,9 @@ class Post < ApplicationRecord
     post_favorites.exists?(end_user_id: end_user.id)
   end
 
+
+  def self.looks(word)
+    Post.where("body LIKE?", "%#{word}%")
+  end
+
 end

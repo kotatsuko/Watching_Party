@@ -10,9 +10,22 @@ class Group < ApplicationRecord
   def get_group_image
     (group_image.attached?) ? group_image : 'no_image.jpg'
   end
-  
+
   def watching?
     Time.now.between?(self.start_time, self.end_time)
+  end
+
+  def waiting?
+    (nil .. self.start_time).cover? Time.now
+  end
+
+  def closed?
+    (self.end_time .. nil).cover? Time.now
+  end
+
+
+  def self.looks(word)
+    Group.where("name LIKE? or title LIKE? or introduction LIKE?", "%#{word}%", "%#{word}%", "%#{word}%")
   end
 
 
