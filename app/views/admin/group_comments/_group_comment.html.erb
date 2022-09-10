@@ -1,0 +1,11 @@
+<div class "w-100 border">
+  <div class = "d-inline-block w-25">
+    <%= group_comment.end_user.name %>
+  </div>
+  <div class = "d-inline-block w-50">
+    <%= group_comment.body %>
+  </div>
+  <div class = "d-inline-block">
+    <%= group_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+  </div>
+</div>

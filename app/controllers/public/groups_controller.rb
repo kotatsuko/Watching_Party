@@ -47,19 +47,22 @@ class Public::GroupsController < ApplicationController
   end
 
   def popular_index
-
+    @groups = Group.sort{|a,b|
+      b.end_users.count <=>
+      a.end_users.count
+    }
   end
-
+  
   def start_index
-
+    @groups = Group.where("start_time > ?", Time.now).order(start_time: :asc)
   end
-
+  
   def long_index
-
+    @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :desc)
   end
-
-  def shor_index
-
+  
+  def short_index
+    @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :asc)
   end
 
   def join

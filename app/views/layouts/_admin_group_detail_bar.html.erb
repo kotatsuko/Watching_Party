@@ -35,12 +35,12 @@
     <% group.end_users.each do |end_user| %>
       <div class = "mt-1">
         <div class = "d-inline-block">
-          <%= link_to end_user_path(end_user) do %>
+          <%= link_to admin_end_user_path(end_user) do %>
             <%= image_tag end_user.get_end_user_image, :width => '50', :height => '50' %>
           <% end %>
         </div>
         <div class = "d-inline-block">
-          <%= link_to end_user_path(end_user) do %>
+          <%= link_to admin_end_user_path(end_user) do %>
             <%= end_user.name %>
           <% end %>
         </div>
