@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>WatchingParty</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <div class = "container-fluid h-100">
+      <div class = "row">
+        <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
+          <%= render "layouts/admin_left_bar" %>
+        </div>
+        <div class = "col-6 pt-3", style = "height:100vh;">
+          <%= yield %>
+        </div>
+        <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
+          <%= render "layouts/right_bar", starting_soon_groups:@starting_soon_groups %>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

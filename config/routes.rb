@@ -13,13 +13,13 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top'
 
-    resources :post, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy]
 
     get "groups/popular" => "groups#popular_index"
     get "groups/start" => "groups#start_index"
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
-    resources :group, except: [:edit, :update]
+    resources :groups, except: [:edit, :update]
 
     resources :end_users, only: [:index, :show, :edit, :update]
 
