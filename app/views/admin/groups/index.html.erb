@@ -1,2 +1,5 @@
 <h1 class = "mb-5">新着グループ</h1>
+<div>
+  新着順|<%= link_to "参加人数順", admin_groups_popular_path %>|<%= link_to "開始が近い順", admin_groups_start_path %>|<%= link_to "視聴時間が長い順", admin_groups_long_path %>|<%= link_to "視聴時間が短い順", admin_groups_short_path %>|<%= link_to "終了したグループ", admin_groups_closed_path %>
+</div>
 <%= render "groups_index", groups:@groups %>

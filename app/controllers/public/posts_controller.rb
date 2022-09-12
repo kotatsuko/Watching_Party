@@ -1,5 +1,10 @@
 class Public::PostsController < ApplicationController
 
+  before_action :ensure_guest_user, only:[:new, :create, :edit, :update, :destroy]
+  before_action :end_user_sign_in?
+
+
+
   def new
     @post = Post.new
   end
@@ -66,4 +71,18 @@ class Public::PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:body)
   end
+
+  def ensure_guest_user
+    if current_end_user.email == "guest@example.com"
+      redirect_to posts_path,notice:"ゲストユーザーでは使用できませんできません。"
+    end
+  end
+
+  def end_user_sign_in?
+    unless end_user_signed_in?
+      redirect_to new_end_user_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
+  end
+
 end

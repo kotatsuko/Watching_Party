@@ -9,6 +9,10 @@ Rails.application.routes.draw do
     registrations: "public/registrations",
     sessions: 'public/sessions'
   }
+  devise_scope :end_user do
+    post 'end_users/guest_sign_in', to: 'public/sessions#guest_sign_in'
+    get '/end_users', to: 'public/registrations#new'
+  end
 
   namespace :admin do
     get '' => 'homes#top'
@@ -19,7 +23,10 @@ Rails.application.routes.draw do
     get "groups/start" => "groups#start_index"
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
-    resources :groups, except: [:edit, :update]
+    get "groups/closed" => "groups#closed_index"
+    resources :groups, except: [:edit, :update] do
+      delete "group_comments/:id" => "groups#comment_destroy", as: "admin_group_comment_destroy"
+    end
 
     resources :end_users, only: [:index, :show, :edit, :update]
 
@@ -50,6 +57,7 @@ Rails.application.routes.draw do
     get "groups/start" => "groups#start_index"
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
+    get "groups/closed" => "groups#closed_index"
     resources :groups do
       get "join" => "groups#join"
       delete "leave" => "groups#leave"

@@ -3,12 +3,12 @@
     <div class = "bg-light mt-3">
       <div class = "d-inline-block w-75">
         <div class = "d-inline-block">
-          <%= link_to group_path(group) do %>
+          <%= link_to admin_group_path(group) do %>
             <%= image_tag group.get_group_image, :width => '50', :height => '50' %>
           <% end %>
         </div>
         <div class = "d-inline-block">
-          <%= link_to group_path(group) do %>
+          <%= link_to admin_group_path(group) do %>
             <%= group.name %>
           <% end %>
         </div>

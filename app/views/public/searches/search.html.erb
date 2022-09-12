@@ -2,9 +2,21 @@
   "<%= @word %>"が含まれる<%= @data_type %>
 </h2>
 <% if @groups.present? %>
-  <%= render "public/groups/groups_index", groups:@groups %>
+  <% if admin_signed_in? %>
+    <%= render "admin/groups/groups_index", groups:@groups %>
+  <% else %>
+    <%= render "public/groups/groups_index", groups:@groups %>
+  <% end %>
 <% elsif @posts.present? %>
-  <%= render "public/posts/posts_index", posts:@posts %>
+  <% if admin_signed_in? %>
+    <%= render "admin/posts/posts_index", posts:@posts %>
+  <% else %>
+    <%= render "public/posts/posts_index", posts:@posts %>
+  <% end %>
 <% elsif @end_users.present? %>
-  <%= render "public/relationships/end_users_list", end_users:@end_users %>
+  <% if admin_signed_in? %>
+    <%= render "admin/end_users/end_users_list", end_users:@end_users %>
+  <% else %>
+    <%= render "public/relationships/end_users_list", end_users:@end_users %>
+  <% end %>
 <% end %>

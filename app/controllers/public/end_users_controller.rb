@@ -1,5 +1,11 @@
 class Public::EndUsersController < ApplicationController
 
+  before_action :ensure_guest_user, except:[:show]
+  before_action :show_guest_user, only:[:show]
+  before_action :ensure_correct_user, only:[:edit, :update]
+  before_action :end_user_sign_in?
+
+
   def show
     @end_user = EndUser.find(params[:id])
     if @end_user == @current_end_user
@@ -26,7 +32,8 @@ class Public::EndUsersController < ApplicationController
   def deleted
      @current_end_user = current_end_user
      @current_end_user.update(is_deleted: "TRUE")
-     redirect_to destroy_end_user_session_path
+     reset_session
+     redirect_to root_path
   end
 
   def my_favorites
@@ -52,5 +59,35 @@ class Public::EndUsersController < ApplicationController
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :end_user_image)
   end
+
+  def ensure_correct_user
+    @end_user = EndUser.find(params[:id])
+    @current_end_user = current_end_user
+    if @end_user != @current_end_user
+      redirect_to end_user_path(@current_end_user),notice:"ほかのユーザーの情報は編集することができません"
+    end
+  end
+
+
+  def ensure_guest_user
+    if current_end_user.email == "guest@example.com"
+      redirect_to root_path,notice:"ゲストユーザーでは使用できませんできません。"
+    end
+  end
+
+  def show_guest_user
+    @end_user = EndUser.find(params[:id])
+    if @end_user.email == "guest@example.com"
+      redirect_to root_path,notice:"ゲストユーザーでは使用できませんできません。"
+    end
+  end
+
+  def end_user_sign_in?
+    unless end_user_signed_in?
+      redirect_to new_end_user_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
+  end
+
 
 end

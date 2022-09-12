@@ -1,5 +1,9 @@
 class Public::SearchesController < ApplicationController
 
+  before_action :end_user_sign_in?
+
+
+
   def search
     if params[:data_type] == "グループ"
       @groups = Group.looks(params[:word])
@@ -16,6 +20,17 @@ class Public::SearchesController < ApplicationController
     @tag = Tag.find(params[:id])
     @groups = @tag.groups.order(created_at: :desc)
     @posts = @tag.posts.order(created_at: :desc)
+  end
+
+
+
+  private
+
+  def end_user_sign_in?
+    unless end_user_signed_in?
+      redirect_to new_end_user_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
   end
 
 end

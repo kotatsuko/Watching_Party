@@ -1,0 +1,38 @@
+<h2>ユーザー情報編集</h2>
+<div class = "login_form text-center ml-auto mr-auto mt-5 mb-5 w-75">
+  <div class = "text-left">
+    <%= form_with model: [:admin, @end_user] do |f| %>
+
+      <div class="field">
+        <%= f.label :name, "ユーザーネーム" %>
+        <%= f.text_field :name %>
+      </div>
+
+      <div>
+        <%= f.label :introduction, "自己紹介　　　" %>
+        <%= f.text_area :introduction, size: "40x5" %>
+      </div>
+
+      <div>
+        <%= f.label :end_user_image, "ユーザー画像　" %>
+        <%= f.file_field :end_user_image, accept: "image/*" %>
+      </div>
+
+      <div>
+        <div>
+          <%= f.label :is_deleted, "退会ステータス" %>
+        </div>
+        <div class="col-4 mt-3">
+          <%= f.radio_button :is_deleted, :false %>
+          <%= f.label :is_deleted, "有効", class: "text-secondary font-weight-bold" %>
+          <%= f.radio_button :is_deleted, :true %>
+          <%= f.label :is_deleted, "退会", class: "text-secondary font-weight-bold" %>
+        </div>
+      </div>
+
+      <div class="actions mt-5">
+        <%= f.submit "変更する",class:"btn btn-success" %>
+      </div>
+    <% end %>
+  </div>
+</div>

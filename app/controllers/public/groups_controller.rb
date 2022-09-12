@@ -1,5 +1,10 @@
 class Public::GroupsController < ApplicationController
 
+  before_action :ensure_guest_user, only:[:new, :create, :edit, :update, :destroy]
+  before_action :ensure_owner_user, only:[:edit, :update]
+  before_action :end_user_sign_in?
+
+
   def new
     @group = Group.new
   end
@@ -47,22 +52,26 @@ class Public::GroupsController < ApplicationController
   end
 
   def popular_index
-    @groups = Group.sort{|a,b|
+    @groups = Group.where("start_time > ?", Time.now).sort{|a,b|
       b.end_users.count <=>
       a.end_users.count
     }
   end
-  
+
   def start_index
     @groups = Group.where("start_time > ?", Time.now).order(start_time: :asc)
   end
-  
+
   def long_index
     @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :desc)
   end
-  
+
   def short_index
     @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :asc)
+  end
+
+  def closed_index
+    @groups = Group.where("end_time < ?", Time.now).order(end_time: :desc)
   end
 
   def join
@@ -87,4 +96,28 @@ class Public::GroupsController < ApplicationController
   def group_params
     params.require(:group).permit(:name, :introduction, :title, :genre, :viewing_time, :start_time, :group_image)
   end
+
+  def ensure_owner_user
+    @current_end_user = current_end_user
+    @group = Group.find(params[:id])
+    if @group.owner_user_id != @current_end_user.id
+      redirect_to groups_path
+      flash[:notice] = "オーナーユーザーのみがグループの情報を編集できます。"
+    end
+  end
+
+  def ensure_guest_user
+    if current_end_user.email == "guest@example.com"
+      redirect_to groups_path
+      flash[:notice] = "ゲストユーザーでは使用できません。"
+    end
+  end
+
+  def end_user_sign_in?
+    unless end_user_signed_in?
+      redirect_to new_end_user_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
+  end
+
 end

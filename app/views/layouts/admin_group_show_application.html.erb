@@ -14,14 +14,13 @@
     <div class = "container-fluid h-100">
       <div class = "row">
         <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
-          <%= render "layouts/left_bar", current_end_user:@current_end_user %>
+          <%= render "layouts/admin_left_bar", current_end_user:@current_end_user %>
         </div>
-        <div class = "col-6 pt-3", style = "height:100vh;">
-          <%= flash[:notice] %>
+        <div class = "col-6 pt-3">
           <%= yield %>
         </div>
         <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
-          <%= render "layouts/right_bar", starting_soon_groups:@starting_soon_groups %>
+          <%= render "layouts/admin_group_detail_bar", group:@group %>
         </div>
       </div>
     </div>

@@ -1,8 +1,15 @@
 <div style = "height:95vh;",  id = "comment-full w-100">
-  <div class = "w-100 h-75 border overflow-auto", id = "group_comment_container">
-    <%= render @group_comments %>
-  </div>
+  <% if @group.end_users.include?(current_end_user) %>
+    <div class = "w-100 h-75 border overflow-auto", id = "group_comment_container">
+      <%= render @group_comments %>
+    </div>
+  <% else %>
+    <h3>同時視聴のコメントを観覧、投稿したい場合は、グループに参加してください</h3>
+  <% end %>
   <% if @group.watching? %>
+    <% if @current_end_user.email != "guest@example.com" %>
+      <%= render "group_comment_form", group:@group, group_comment:@group_comment %>
+    <% end %>
     <h3>視聴中</h3>
   <% elsif @group.waiting? %>
     <h3>

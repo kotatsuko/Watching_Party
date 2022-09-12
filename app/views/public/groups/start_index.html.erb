@@ -1,0 +1,5 @@
+<h1>開始時間が近い順</h1>
+<div>
+  <%= link_to "新着順", groups_path %>|<%= link_to "参加人数順", groups_popular_path %>|開始が近い順|<%= link_to "視聴時間が長い順", groups_long_path %>|<%= link_to "視聴時間が短い順", groups_short_path %>|<%= link_to "終了したグループ", groups_closed_path %>
+</div>
+<%= render "groups_index", groups:@groups %>

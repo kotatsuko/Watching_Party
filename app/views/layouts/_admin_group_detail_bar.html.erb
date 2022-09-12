@@ -1,5 +1,8 @@
-<div>
+<div class = "d-inline-block">
     <%= image_tag group.get_group_image, :width => '200', :height => '200' %>
+</div>
+<div class = "d-inline-block">
+  <%= link_to "削除", group_path(group), method: :delete, class: "btn btn-sm btn-danger" %>
 </div>
 <table class = "table table-bordered">
   <tbody>
