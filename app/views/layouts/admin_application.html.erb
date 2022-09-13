@@ -17,6 +17,7 @@
           <%= render "layouts/admin_left_bar" %>
         </div>
         <div class = "col-6 pt-3", style = "height:100vh;">
+          <%= flash[:notice] %>
           <%= yield %>
         </div>
         <div class = "col-3 pt-3 bg-light", style = "height:100vh;">

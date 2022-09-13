@@ -1,5 +1,7 @@
 class Admin::GroupsController < ApplicationController
 
+  before_action :admin_sign_in?
+
   layout "admin_application"
 
 
@@ -78,6 +80,13 @@ class Admin::GroupsController < ApplicationController
 
   def group_params
     params.require(:group).permit(:name, :introduction, :title, :genre, :viewing_time, :start_time, :group_image)
+  end
+
+  def admin_sign_in?
+    unless admin_signed_in?
+      redirect_to new_admin_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
   end
 
 end

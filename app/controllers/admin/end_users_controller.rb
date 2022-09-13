@@ -1,5 +1,7 @@
 class Admin::EndUsersController < ApplicationController
 
+  before_action :admin_sign_in?
+
   layout "admin_application"
 
 
@@ -29,6 +31,13 @@ class Admin::EndUsersController < ApplicationController
 
   def end_user_params
     params.require(:end_user).permit(:name, :introduction, :end_user_image, :is_deleted)
+  end
+
+  def admin_sign_in?
+    unless admin_signed_in?
+      redirect_to new_admin_session_path
+      flash[:notice] = "サイトを使用するにはログインをしてください"
+    end
   end
 
 
