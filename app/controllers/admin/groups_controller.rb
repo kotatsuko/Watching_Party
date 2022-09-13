@@ -3,6 +3,25 @@ class Admin::GroupsController < ApplicationController
   layout "admin_application"
 
 
+
+  def new
+    @group = Group.new
+  end
+
+  def create
+    @group = Group.new(group_params)
+    @group.end_time = params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60)
+    @group.owner_user_id = 4
+    tag_list=params[:group][:tag_name].split(nil)
+    if @group.save
+      @group.save_tag(tag_list)
+      redirect_to admin_group_path(@group)
+    else
+      render "new"
+    end
+  end
+
+
   def index
     @groups = Group.all.order(created_at: :desc)
   end
@@ -13,8 +32,6 @@ class Admin::GroupsController < ApplicationController
     render :layout => "admin_group_show_application"
   end
 
-  def create
-  end
 
   def destroy
     @group = Group.find(params[:id])
@@ -50,6 +67,17 @@ class Admin::GroupsController < ApplicationController
 
   def closed_index
     @groups = Group.where("end_time < ?", Time.now).order(end_time: :desc)
+  end
+
+
+
+
+
+  private
+
+
+  def group_params
+    params.require(:group).permit(:name, :introduction, :title, :genre, :viewing_time, :start_time, :group_image)
   end
 
 end

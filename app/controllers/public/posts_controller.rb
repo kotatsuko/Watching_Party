@@ -17,8 +17,7 @@ class Public::PostsController < ApplicationController
       @post.save_tag(tag_list)
       redirect_to post_path(@post)
     else
-      @posts = Post.all.order(created_at: :desc)
-      render 'index'
+      render 'new'
     end
   end
 

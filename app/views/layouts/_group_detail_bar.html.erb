@@ -14,7 +14,7 @@
 <table class = "table table-bordered">
   <tbody>
     <tr>
-      <td><%= group.name %></td>
+      <td><%= group.name %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %></td>
     </tr>
     <tr>
       <td><%= group.introduction %></td>

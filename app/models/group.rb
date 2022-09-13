@@ -6,6 +6,15 @@ class Group < ApplicationRecord
   has_many :group_tags, dependent: :destroy
   has_many :tags, through: :group_tags
 
+
+  validates :name, presence: true
+  validates :introduction, presence: true
+  validates :title, presence: true
+  validates :genre, presence: true
+  validates :start_time, presence: true
+  validates :viewing_time, presence: true
+
+
   has_one_attached :group_image
   def get_group_image
     (group_image.attached?) ? group_image : 'no_image.jpg'

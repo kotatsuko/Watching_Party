@@ -10,7 +10,7 @@
   <div class = "d-flex">
     <% @starting_soon_groups.each do |group| %>
       <div>
-        <%= link_to group_path(group) do %>
+        <%= link_to admin_group_path(group) do %>
           <div>
             <%= image_tag group.get_group_image, :width => '100', :height => '100' %>
           </div>
@@ -36,7 +36,7 @@
   <div class = "d-flex">
     <% @watching_groups.each do |group| %>
       <div>
-        <%= link_to group_path(group) do %>
+        <%= link_to admin_group_path(group) do %>
           <div>
             <%= image_tag group.get_group_image, :width => '100', :height => '100'  %>
           </div>

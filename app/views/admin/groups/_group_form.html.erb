@@ -1,5 +1,5 @@
 <div class = "group_form mt-5">
-<%= form_with model:group do |f| %>
+<%= form_with model:[:admin, group] do |f| %>
   <div class="field">
     <%= f.label :name, "グループネーム" %>
     <%= f.text_field :name, size: "60x5" %>
@@ -27,11 +27,7 @@
 
   <div>
     <%= f.label :start_time, "開始時間　　　" %>
-    <% if current_page?(new_group_path) %>
       <%= f.datetime_field :start_time, value: Time.current.strftime('%Y-%m-%dT%H:%M') %>
-    <% else %>
-      <%= f.datetime_field :start_time %>
-    <% end %>
   </div>
 
   <div>
