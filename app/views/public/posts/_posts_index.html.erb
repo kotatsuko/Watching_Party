@@ -36,6 +36,7 @@
         <% end %>
       </div>
       <div>
+        タグ：
         <% post.tags.each do |tag| %>
           <%= link_to tag_search_path(tag.id) do %>
             <%= tag.name %>(<%= tag.posts.count %>)

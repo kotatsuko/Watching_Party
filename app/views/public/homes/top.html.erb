@@ -11,7 +11,7 @@
             <div class = "d-inline-block">
               <%= group.name %>『<%= group.title %>』<br>
               <%= group.introduction %><br>
-              <%= group.start_time.strftime('%Y-%m-%d %H:%M') %><br>
+              <%= group.start_time.strftime('%Y-%m-%d %H:%M') %>開始<br>
               <%= group.end_users.count %>参加予定
             </div>
           </div>
@@ -35,6 +35,9 @@
             <% end %>
           </div>
           <div class = "mt-auto">
+            <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          </div>
+          <div>
             <%= post.post_favorites.count %>いいね
           </div>
         </div>
