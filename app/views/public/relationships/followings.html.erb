@@ -1,0 +1,12 @@
+<h1>
+  <% if @end_user == @current_end_user %>
+    フォロー
+  <% else %>
+    <%= link_to end_user_path(@end_user) do %>
+      <%= @end_user.name %>
+    <% end %>
+    のフォロー
+  <% end %>
+</h1>
+
+<%= render "end_users_list", end_users:@end_users, current_end_user:@current_end_user %>

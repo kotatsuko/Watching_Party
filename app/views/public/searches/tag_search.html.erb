@@ -1,0 +1,20 @@
+<div style = "height:45vh;">
+  <h3>"<%= @tag.name %>"のグループ</h3>
+  <div class = "h-100 overflow-auto">
+    <% if admin_signed_in? %>
+      <%= render "admin/groups/groups_index", groups:@groups %>
+    <% else %>
+      <%= render "public/groups/groups_index", groups:@groups %>
+    <% end %>
+  </div>
+</div>
+<div style = "height:45vh;">
+  <h3>"<%= @tag.name %>"の投稿</h3>
+  <div class = "h-100 overflow-auto">
+    <% if admin_signed_in? %>
+      <%= render "admin/posts/posts_index", posts:@posts %>
+    <% else %>
+      <%= render "public/posts/posts_index", posts:@posts %>
+    <% end %>
+  </div>
+</div>

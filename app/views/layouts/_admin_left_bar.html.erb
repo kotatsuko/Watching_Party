@@ -1,0 +1,35 @@
+<div class = "logo text-center">
+  <%= link_to admin_path do %>
+    <img src = "https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching%20Party.png" width="80%">
+  <% end %>
+</div>
+<div class = "main_menu text-center mt-3">
+  <% if admin_signed_in? %>
+    <div class = "mt-3">
+      <%= link_to "ホーム", admin_path, class:"text-dark" %>
+    </div>
+    <div class = "mt-3">
+      <%= link_to "ユーザー一覧", admin_end_users_path, class:"text-dark" %>
+    </div>
+    <div class = "mt-3">
+      <%= link_to "グループ一覧", admin_groups_path, class:"text-dark" %>
+    </div>
+    <div class = "mt-3">
+      <%= link_to "投稿一覧", admin_posts_path, class:"text-dark" %>
+    </div>
+    <div class = "mt-3">
+      <%= link_to "グループを作る", new_admin_group_path, class:"btn btn-primary rounded-pill" %>
+    </div>
+    <div>
+      <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class:"btn btn-danger mt-3" %>
+    </div>
+
+  <% else %>
+    <%= link_to admin_path do %>
+     <p class = "text-dark">ホーム</p>
+    <% end %>
+    <%= link_to new_admin_session_path do %>
+     <p class = "text-dark">ログイン</p>
+    <% end %>
+  <% end %>
+</div>

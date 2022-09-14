@@ -1,0 +1,14 @@
+<div class "w-100 border">
+  <div class = "d-inline-block">
+    <%= group_comment.end_user.name %>
+  </div>
+  <div class = "d-inline-block w-50 ml-3">
+    <%= group_comment.body %>
+  </div>
+  <div class = "d-inline-block">
+    <%= group_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+  </div>
+  <div class = "d-inline-block">
+    <%= link_to "削除", admin_group_admin_group_comment_destroy_path(group_comment.group,group_comment), method: :delete, class:"btn btn-danger btn-sm" %>
+  </div>
+</div>

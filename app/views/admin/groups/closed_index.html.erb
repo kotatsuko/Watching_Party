@@ -1,0 +1,5 @@
+<h1 class = "mb-5">終了したグループ</h1>
+<div>
+  <%= link_to "新着順", admin_groups_path %>|<%= link_to "参加人数順", admin_groups_popular_path %>|<%= link_to "開始が近い順", admin_groups_start_path %>|<%= link_to "視聴時間が長い順", admin_groups_long_path %>|<%= link_to "視聴時間が短い順", admin_groups_short_path %>|終了したグループ
+</div>
+<%= render "groups_index", groups:@groups %>

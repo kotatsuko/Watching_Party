@@ -1,0 +1,44 @@
+<div class = "groups_list h-75 overflow-auto">
+  <% groups.each do |group| %>
+    <div class = "bg-light mt-3">
+      <div class = "d-inline-block w-75">
+        <div class = "d-inline-block">
+          <%= link_to admin_group_path(group) do %>
+            <%= image_tag group.get_group_image, :width => '50', :height => '50' %>
+          <% end %>
+        </div>
+        <div class = "d-inline-block">
+          <%= link_to admin_group_path(group) do %>
+            <%= group.name %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %>
+          <% end %>
+        </div>
+        <div>
+          視聴作品：『<%= group.title %>』
+        </div>
+        <div>
+          <% group.tags.each do |tag| %>
+            <%= link_to tag_search_path(tag.id) do %>
+              <%= tag.name %>(<%= tag.groups.count %>)
+            <% end %>
+          <% end %>
+        </div>
+      </div>
+      <div class = "d-inline-block text-right">
+        <div>
+          <%= group.start_time.strftime('%Y/%m/%d %H:%M') %>～
+        </div>
+        <div>
+          <%= group.viewing_time %>分間
+        </div>
+      </div>
+      <div>
+        <div class = "d-inline-block">
+          <%= group.end_users.count %>人参加予定
+        </div>
+        <div class = "d-inline-block">
+            <%= link_to "削除", admin_group_path(group), method: :delete, class: "btn btn-sm btn-danger" %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

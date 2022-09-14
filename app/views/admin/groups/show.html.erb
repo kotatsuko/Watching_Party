@@ -1,0 +1,14 @@
+<div style = "height:95vh;",  id = "comment-full w-100">
+  <div class = "w-100 h-75 border overflow-auto", id = "group_comment_container">
+    <%= render @group_comments %>
+  </div>
+  <% if @group.watching? %>
+    <h3>視聴中</h3>
+  <% elsif @group.waiting? %>
+    <h3>
+      <%= @group.start_time.strftime('%Y/%m/%d %H:%M') %>から視聴開始
+    </h3>
+  <% elsif @group.closed? %>
+    <h3>同時視聴は終了しました</h3>
+  <% end %>
+</div>
