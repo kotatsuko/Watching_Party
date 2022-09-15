@@ -3,6 +3,8 @@ class Public::EndUsersController < ApplicationController
   before_action :ensure_guest_user, except:[:show]
   before_action :show_guest_user, only:[:show]
   before_action :ensure_correct_user, only:[:edit, :update]
+  before_action :ensure_deleted_user, only:[:confirm, :deleted]
+  after_action :deleted_message, only:[:deleted]
   before_action :end_user_sign_in?
 
 
@@ -26,12 +28,12 @@ class Public::EndUsersController < ApplicationController
   end
 
   def confirm
-
+    @end_user = EndUser.find(params[:end_user_id])
   end
 
   def deleted
-     @current_end_user = current_end_user
-     @current_end_user.update(is_deleted: "TRUE")
+     @end_user = EndUser.find(params[:end_user_id])
+     @end_user.update(is_deleted: "TRUE")
      reset_session
      redirect_to root_path
   end
@@ -68,6 +70,14 @@ class Public::EndUsersController < ApplicationController
     end
   end
 
+  def ensure_deleted_user
+    @end_user = EndUser.find(params[:end_user_id])
+    @current_end_user = current_end_user
+    if @end_user != @current_end_user
+      redirect_to end_user_path(@end_user),notice:"ほかのユーザーの情報は編集することができません"
+    end
+  end
+
 
   def ensure_guest_user
     if current_end_user.email == "guest@example.com"
@@ -87,6 +97,10 @@ class Public::EndUsersController < ApplicationController
       redirect_to new_end_user_session_path
       flash[:notice] = "サイトを使用するにはログインをしてください"
     end
+  end
+
+  def deleted_message
+    flash[:notice] = "退会しました"
   end
 
 

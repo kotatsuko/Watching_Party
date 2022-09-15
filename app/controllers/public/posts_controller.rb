@@ -60,7 +60,7 @@ class Public::PostsController < ApplicationController
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to end_user_path(@post.end_user)
+    redirect_to end_user_my_posts_path(@post.end_user)
   end
 
 

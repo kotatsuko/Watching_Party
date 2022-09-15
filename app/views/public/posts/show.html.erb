@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div class = "post_comments mt-5 h-50">
+<div class = "post_comments mt-5 pt-5 h-50">
   <% if @current_end_user.email != "guest@example.com" %>
     <div class = "post_comment_form">
       <%= form_with model: [@post,@post_comment] do |f| %>
@@ -76,7 +76,7 @@
         <div class = "d-inline-block ml-5">
           <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
-        <% if post_comment.end_user == current_end_user %>
+        <% if post_comment.end_user == current_end_user || post_comment.post.end_user == current_end_user %>
           <div class = "d-inline-block ml-5">
             <%= link_to "削除する", post_post_comment_path(post_comment.post, post_comment), method: :delete, class:"btn btn-danger" %>
           </div>
