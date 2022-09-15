@@ -40,9 +40,14 @@ class Public::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
-    @group.update(group_params)
-    @group.update(end_time: params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60))
-    redirect_to group_path(@group)
+    tag_list=params[:group][:tag_name].split(nil)
+    if @group.update(group_params)
+      @group.update(end_time: params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60))
+      @group.save_tag(tag_list)
+      redirect_to group_path(@group)
+    else
+      render "edit"
+    end
   end
 
   def destroy
@@ -102,7 +107,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     if @group.owner_user_id != @current_end_user.id
       redirect_to groups_path
-      flash[:notice] = "オーナーユーザーのみがグループの情報を編集できます。"
+      flash[:notice] = "オーナーユーザーのみグループの情報を編集できます。"
     end
   end
 

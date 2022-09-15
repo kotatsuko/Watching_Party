@@ -30,7 +30,7 @@
       <%= @post.post_comments.count %>コメント
     </div>
     <div class = "d-inline-block ml-3">
-      <%= @post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+      <%= @post.created_at.strftime('%Y/%m/%d %H:%M') %>
     </div>
     <% if @post.end_user == current_end_user %>
       <div class = "d-inline-block ml-5">
@@ -53,7 +53,7 @@
   </div>
 </div>
 
-<div class = "post_comments mt-5">
+<div class = "post_comments mt-5 h-50">
   <% if @current_end_user.email != "guest@example.com" %>
     <div class = "post_comment_form">
       <%= form_with model: [@post,@post_comment] do |f| %>
@@ -62,7 +62,7 @@
       <% end %>
     </div>
   <% end %>
-  <div class = "post_comments_index mt-5">
+  <div class = "post_comments_index mt-3 overflow-auto border h-75">
     <% @post_comments.each do |post_comment| %>
       <div class = "mt-3">
         <%= link_to end_user_path(post_comment.end_user) do %>
@@ -74,7 +74,7 @@
           </div>
         <% end %>
         <div class = "d-inline-block ml-5">
-          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <%= post_comment.created_at.strftime('%Y/%m/%d %H:%M') %>
         </div>
         <% if post_comment.end_user == current_end_user %>
           <div class = "d-inline-block ml-5">

@@ -64,7 +64,7 @@ class Public::EndUsersController < ApplicationController
     @end_user = EndUser.find(params[:id])
     @current_end_user = current_end_user
     if @end_user != @current_end_user
-      redirect_to end_user_path(@current_end_user),notice:"ほかのユーザーの情報は編集することができません"
+      redirect_to end_user_path(@end_user),notice:"ほかのユーザーの情報は編集することができません"
     end
   end
 
