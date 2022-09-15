@@ -17,7 +17,9 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top'
 
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      delete "post_comments/:id" => "posts#comment_destroy", as: "admin_post_comment_destroy"
+    end
 
     get "groups/popular" => "groups#popular_index"
     get "groups/start" => "groups#start_index"
