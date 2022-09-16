@@ -34,6 +34,22 @@ class Admin::GroupsController < ApplicationController
     render :layout => "admin_group_show_application"
   end
 
+  def edit
+    @group = Group.find(params[:id])
+  end
+
+  def update
+    @group = Group.find(params[:id])
+    tag_list=params[:group][:tag_name].split(nil)
+    if @group.update(group_params)
+      @group.update(end_time: params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60))
+      @group.save_tag(tag_list)
+      redirect_to admin_group_path(@group)
+    else
+      render "edit"
+    end
+  end
+
 
   def destroy
     @group = Group.find(params[:id])

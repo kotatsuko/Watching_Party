@@ -26,7 +26,7 @@ Rails.application.routes.draw do
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
     get "groups/closed" => "groups#closed_index"
-    resources :groups, except: [:edit, :update] do
+    resources :groups do
       delete "group_comments/:id" => "groups#comment_destroy", as: "admin_group_comment_destroy"
     end
 
