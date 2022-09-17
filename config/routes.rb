@@ -17,14 +17,16 @@ Rails.application.routes.draw do
   namespace :admin do
     get '' => 'homes#top'
 
-    resources :posts, only: [:index, :show, :destroy]
+    resources :posts, only: [:index, :show, :destroy] do
+      delete "post_comments/:id" => "posts#comment_destroy", as: "admin_post_comment_destroy"
+    end
 
     get "groups/popular" => "groups#popular_index"
     get "groups/start" => "groups#start_index"
     get "groups/long" => "groups#long_index"
     get "groups/short" => "groups#short_index"
     get "groups/closed" => "groups#closed_index"
-    resources :groups, except: [:edit, :update] do
+    resources :groups do
       delete "group_comments/:id" => "groups#comment_destroy", as: "admin_group_comment_destroy"
     end
 

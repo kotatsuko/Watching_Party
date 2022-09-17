@@ -6,6 +6,7 @@ class GroupComment < ApplicationRecord
 
   validates :body, presence: true, length: { maximum: 200 }
 
+  #ActionCableで送信する際のコメントのテンプレート化
   def template
     ApplicationController.renderer.render partial: 'public/group_comments/group_comment', locals: { group_comment: self }
   end

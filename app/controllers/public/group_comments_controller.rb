@@ -10,6 +10,7 @@ class Public::GroupCommentsController < ApplicationController
     @group_comment.end_user_id = current_end_user.id
     @group_comment.group_id = group.id
     if @group_comment.save
+      #ActionCableを用いてグループコメントを送信
       ActionCable.server.broadcast 'live_channel', {group_comment: @group_comment.template}
     else
       render "groups/show"

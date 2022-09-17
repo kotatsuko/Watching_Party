@@ -7,7 +7,9 @@ class ApplicationController < ActionController::Base
 
   def setting
     @current_end_user = current_end_user
+    #開始時間が近いグループを三つ変数に定義
     @starting_soon_groups = Group.where("start_time > ?", Time.now).order(start_time: :asc).limit(3)
+    #視聴中のグループを最大三つ変数に定義
     @watching_groups = Group.where("end_time > ? and ? > start_time", Time.now, Time.now).limit(3)
   end
 

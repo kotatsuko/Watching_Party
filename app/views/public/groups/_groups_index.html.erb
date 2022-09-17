@@ -16,6 +16,7 @@
           視聴作品：『<%= group.title %>』
         </div>
         <div>
+          タグ：
           <% group.tags.each do |tag| %>
             <%= link_to tag_search_path(tag.id) do %>
               <%= tag.name %>(<%= tag.groups.count %>)

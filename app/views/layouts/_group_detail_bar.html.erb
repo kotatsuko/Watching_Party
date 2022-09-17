@@ -11,38 +11,32 @@
     <%= link_to 'グループに参加する', group_join_path(@group), class: "btn btn-sm btn-success" %>
   <% end %>
 </div>
-<table class = "table table-bordered">
-  <tbody>
-    <tr>
-      <td><%= group.name %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %></td>
-    </tr>
-    <tr>
-      <td><%= group.introduction %></td>
-    </tr>
-    <tr>
-      <td>『<%= group.title %>』</td>
-    </tr>
-    <tr>
-      <td><%= group.genre %></td>
-    </tr>
-    <tr>
-      <td><%= group.start_time.strftime('%Y-%m-%d %H:%M') %>～　<%= group.viewing_time %>分</td>
-    </tr>
-    <tr>
-      <td>
-        タグ：
-        <% group.tags.each do |tag| %>
-          <%= link_to tag_search_path(tag.id) do %>
-            <%= tag.name %>(<%= tag.groups.count %>)
-          <%end %>
-        <% end %>
-      </td>
-    </tr>
-  </tbody>
-</table>
-<div class = "overflow-auto">
+<div class = "w-100 border overflow-auto", style = "height:50px; padding:12px;">
+  <%= group.name %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %>
+</div>
+<div class = "w-100 border overflow-auto", style = "height:90px; padding:12px;">
+  <%= group.introduction %>
+</div>
+<div class = "w-100 border overflow-auto", style = "height:50px; padding:12px;">
+  『<%= group.title %>』
+</div>
+<div class = "w-100 border overflow-auto", style = "height:50px; padding:12px;">
+  <%= group.genre %>
+</div>
+<div class = "w-100 border overflow-auto", style = "height:50px; padding:12px;">
+  <%= group.start_time.strftime('%Y-%m-%d %H:%M') %>～　<%= group.viewing_time %>分
+</div>
+<div class = "w-100 border overflow-auto", style = "height:50px; padding:12px;">
+  タグ：
+  <% group.tags.each do |tag| %>
+    <%= link_to tag_search_path(tag.id) do %>
+      <%= tag.name %>(<%= tag.groups.count %>)
+    <%end %>
+  <% end %>
+</div>
+<div class = "group_member border", style = "height:35vh">
   <h4>メンバー</h4>
-  <div>
+  <div class = "overflow-auto", style = "height:30vh">
     <% group.end_users.each do |end_user| %>
       <div class = "mt-1">
         <div class = "d-inline-block">

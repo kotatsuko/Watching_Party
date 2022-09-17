@@ -21,11 +21,14 @@ class Public::SessionsController < Devise::SessionsController
   #   super
   # end
 
+
+  #ゲストログインの処理
   def guest_sign_in
     end_user = EndUser.guest
     sign_in end_user
     redirect_to root_path
   end
+
 
   # protected
 

@@ -27,9 +27,15 @@
       <div class = "d-inline-block ml-3">
         <%= post.post_comments.count %>コメント
       </div>
-      <div class = "d-inline-block ml-5">
+      <div class = "d-inline-block ml-3">
         <%= post.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
       </div>
+      <% if post.end_user == current_end_user %>
+        <div class = "d-inline-block ml-3">
+          <%= link_to "編集する", edit_post_path(post), class:"btn btn-success btn-sm" %>
+          <%= link_to "削除する", post_path(post), method: :delete, class:"btn btn-danger btn-sm" %>
+        </div>
+      <% end %>
       <div>
         <%= link_to post_path(post) do %>
           <%= post.body %>
