@@ -10,7 +10,7 @@ class Public::SearchesController < ApplicationController
       @groups = Group.looks(params[:word])
     #投稿で検索した場合
     elsif params[:data_type] == "投稿"
-      @posts = Post.looks(params[:word]
+      @posts = Post.looks(params[:word])
     #ユーザーで検索した場合
     elsif params[:data_type] == "ユーザー"
       @end_users = EndUser.looks(params[:word])
