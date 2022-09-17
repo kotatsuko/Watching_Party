@@ -10,9 +10,13 @@ class Public::EndUsersController < ApplicationController
 
   def show
     @end_user = EndUser.find(params[:id])
+    #自身のユーザー詳細ページを開いた場合
     if @end_user == @current_end_user
+      #自身の投稿とフォローしたユーザーの投稿を変数に定義
       @posts = Post.where(end_user_id: [@current_end_user.id, *@current_end_user.followings.pluck(:id)]).order(created_at: :desc)
+    #自身以外のユーザーページを開いた場合
     else
+      #開いたユーザーの投稿だけを変数に定義
       @posts = @end_user.posts.order(created_at: :desc)
     end
   end
@@ -33,13 +37,16 @@ class Public::EndUsersController < ApplicationController
 
   def deleted
      @end_user = EndUser.find(params[:end_user_id])
+     #退会情報を書き換え
      @end_user.update(is_deleted: "TRUE")
      reset_session
      redirect_to root_path
   end
 
   def my_favorites
+    #自身がいいねした投稿のIDを変数に定義
     post_favorites_ids = PostFavorite.where(end_user_id:@current_end_user.id).pluck(:post_id)
+    #上で定義した変数を投稿一覧を変数に定義
     @posts = Post.order(created_at: :desc).find(post_favorites_ids)
   end
 

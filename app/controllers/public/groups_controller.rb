@@ -11,11 +11,16 @@ class Public::GroupsController < ApplicationController
 
   def create
     @group = Group.new(group_params)
+    #終了時間の計算
     @group.end_time = params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60)
+    #オーナーユーザーの定義
     @group.owner_user_id = current_end_user.id
+    #グループを作成したユーザーをグループに参加させる
     @group.end_users << current_end_user
+    #送信されたタグを変数に定義
     tag_list=params[:group][:tag_name].split(nil)
     if @group.save
+      #タグの保存
       @group.save_tag(tag_list)
       redirect_to group_path(@group)
     else
@@ -31,6 +36,7 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:id])
     @group_comment = GroupComment.new
     @group_comments = @group.group_comments.order(created_at: :desc)
+    #groups/show用のレイアウト設定
     render :layout => "group_show_application"
   end
 
@@ -40,9 +46,12 @@ class Public::GroupsController < ApplicationController
 
   def update
     @group = Group.find(params[:id])
+    #送信されたタグを変数に定義
     tag_list=params[:group][:tag_name].split(nil)
     if @group.update(group_params)
+      #終了時間の再計算
       @group.update(end_time: params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60))
+      #タグの再設定
       @group.save_tag(tag_list)
       redirect_to group_path(@group)
     else
@@ -56,6 +65,7 @@ class Public::GroupsController < ApplicationController
     redirect_to end_user_my_groups_path(current_end_user)
   end
 
+  #視聴待ちのグループを参加人数順に並べ替え
   def popular_index
     @groups = Group.where("start_time > ?", Time.now).sort{|a,b|
       b.end_users.count <=>
@@ -63,28 +73,34 @@ class Public::GroupsController < ApplicationController
     }
   end
 
+  #視聴待ちのグループを開始時間が近い順に並べ替え
   def start_index
     @groups = Group.where("start_time > ?", Time.now).order(start_time: :asc)
   end
 
+  #視聴待ちのグループを視聴時間が長い順に並べ替え
   def long_index
     @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :desc)
   end
 
+  #視聴待ちのグループを視聴時間が短い順に並べ替え
   def short_index
     @groups = Group.where("start_time > ?", Time.now).order(viewing_time: :asc)
   end
 
+  #視聴が終了したグループを現在時刻から近い順に並べ替え
   def closed_index
     @groups = Group.where("end_time < ?", Time.now).order(end_time: :desc)
   end
 
+  #グループに参加する処理
   def join
     @group = Group.find(params[:group_id])
     @group.end_users << current_end_user
     redirect_to  request.referer
   end
 
+  #グループから抜ける処理
   def leave
     @group = Group.find(params[:group_id])
     @group.end_users.delete(current_end_user)

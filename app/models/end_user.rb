@@ -16,30 +16,35 @@ class EndUser < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  #ユーザー画像
   has_one_attached :end_user_image
+  #ユーザー画像の
   def get_end_user_image
     (end_user_image.attached?) ? end_user_image : 'no_image.jpg'
   end
 
 
-
+  #フォローをする処理
   def follow(end_user_id)
     relationships.create(followed_id: end_user_id)
   end
-
+  
+  #フォローを外す処理
   def unfollow(end_user_id)
     relationships.find_by(followed_id: end_user_id).destroy
   end
-
+  
+  #フォローしているかを判定
   def following?(end_user)
     followings.include?(end_user)
   end
 
-
+  #検索用の処理
   def self.looks(word)
     EndUser.where("name LIKE? or introduction LIKE?", "%#{word}%", "%#{word}%")
   end
 
+  #ゲストログイン用の処理
   def self.guest
     find_or_create_by!(email:"guest@example.com") do |end_user|
       end_user.password=SecureRandom.urlsafe_base64
