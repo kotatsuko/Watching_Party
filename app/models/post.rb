@@ -18,8 +18,8 @@ class Post < ApplicationRecord
   def self.looks(word)
     Post.where("body LIKE?", "%#{word}%")
   end
-  
-  
+
+
   #タグの保存の処理
   def save_tag(sent_tags)
     #タグが入力されていたら現在のタグを変数に定義
@@ -28,12 +28,12 @@ class Post < ApplicationRecord
     old_tags = current_tags - sent_tags
     #送信されたタグの中から現在のタグにあるものを削除したものの一覧を変数に定義
     new_tags = sent_tags - current_tags
-    
+
     #すでにあるものを検索し削除
     old_tags.each do |old|
-      self.tags.delete　Tag.find_by(name: old)
+      self.tags.delete Tag.find_by(name: old)
     end
-    
+
     #新しいタグを作成し投稿に追加
     new_tags.each do |new|
       new_book_tag = Tag.find_or_create_by(name: new)
