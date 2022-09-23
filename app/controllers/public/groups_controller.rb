@@ -18,7 +18,7 @@ class Public::GroupsController < ApplicationController
     #グループを作成したユーザーをグループに参加させる
     @group.end_users << current_end_user
     #送信されたタグを変数に定義
-    tag_list=params[:group][:tag_name].split(nil)
+    tag_list=params[:group][:tag_name].split(/ |　/)
     if @group.save
       #タグの保存
       @group.save_tag(tag_list)
@@ -47,7 +47,7 @@ class Public::GroupsController < ApplicationController
   def update
     @group = Group.find(params[:id])
     #送信されたタグを変数に定義
-    tag_list=params[:group][:tag_name].split(nil)
+    tag_list=params[:group][:tag_name].split(/ |　/)
     if @group.update(group_params)
       #終了時間の再計算
       @group.update(end_time: params[:group][:start_time].to_datetime.since(params[:group][:viewing_time].to_i * 60).ago(9 * 60 *60))

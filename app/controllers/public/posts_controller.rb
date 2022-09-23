@@ -15,7 +15,7 @@ class Public::PostsController < ApplicationController
     #投稿したユーザーのIDを設定
     @post.end_user_id = current_end_user.id
     #送信されたタグを変数に定義
-    tag_list=params[:post][:tag_name].split(nil)
+    tag_list=params[:post][:tag_name].split(/ |　/)
     if @post.save
       #タグの保存
       @post.save_tag(tag_list)
@@ -34,7 +34,7 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all.order(created_at: :desc)
   end
-  
+
   # #一週間で多くいいねされた順に並べ替え
   def popular_index
     to  = Time.current.at_end_of_day
@@ -53,7 +53,7 @@ class Public::PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     #送信されたタグを変数に定義
-    tag_list=params[:post][:tag_name].split(nil)
+    tag_list=params[:post][:tag_name].split(/ |　/)
     if @post.update(post_params)
       #タグの再設定
       @post.save_tag(tag_list)

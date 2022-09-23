@@ -42,7 +42,7 @@
         </div>
         <div class = "d-inline-block">
           <%= link_to admin_end_user_path(end_user) do %>
-            <%= end_user.name %>
+            <%= end_user.name %><% if end_user.id == group.owner_user_id %>【オーナー】 <% end %>
           <% end %>
         </div>
       </div>
