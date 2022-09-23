@@ -1,9 +1,9 @@
   <%= form_with model: post do |f| %>
     <%= f.text_area :body, size: "90x5" %>
     <% if post.new_record? %>
-      <%= f.text_field :tag_name, placeholder:"タグを追加(半角スペースで区切りを入れると複数できます)" , size: "80x5" %>
+      <%= f.text_field :tag_name, placeholder:"タグを追加(半角か全角スペースで区切りを入れると複数できます)" , size: "80x5" %>
     <% else %>
-      <%= f.text_field :tag_name, value:post.tags.map(&:name).join(" "), placeholder:"タグを追加(半角スペースで区切りを入れると複数できます)" , size: "80x5" %>
+      <%= f.text_field :tag_name, value:post.tags.map(&:name).join(" "), placeholder:"タグを追加(半角か全角スペースで区切りを入れると複数登録できます)" , size: "80x5" %>
     <% end %>
     <% if post.new_record? %>
       <%= f.submit "投稿する",class:"btn btn-primary mt-3" %>

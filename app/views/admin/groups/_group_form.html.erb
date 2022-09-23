@@ -37,7 +37,7 @@
 
   <div>
     <%= f.label :tag_name, "タグ　　　　　"%>
-    <%= f.text_field :tag_name, value:group.tags.map(&:name).join(" "), placeholder:"スペースで区切りを入れると複数登録できます" , size: "60x5" %>
+    <%= f.text_field :tag_name, value:group.tags.map(&:name).join(" "), placeholder:"半角か全角スペースで区切りを入れると複数登録できます" , size: "60x5" %>
   </div>
 
   <div class="actions mt-5" >
