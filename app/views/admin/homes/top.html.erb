@@ -31,7 +31,7 @@
           </div>
           <div class = "w-100 text-break">
             <%= link_to admin_post_path(post) do %>
-              <%= post.body %>
+              <%= post.body.truncate(65) %>
             <% end %>
           </div>
           <div class = "mt-auto">
