@@ -9,6 +9,15 @@
           <%= post.end_user.name %>
         </div>
       <% end %>
+      <% if post.end_user != current_end_user %>
+        <div class = "d-inline-block">
+          <% if current_end_user.following?(post.end_user) %>
+            <%= link_to "フォローを外す", end_user_relationships_path(post.end_user.id),class:"btn btn-info btn-sm", method: :delete %>
+          <% else %>
+            <%= link_to "フォローする", end_user_relationships_path(post.end_user.id),class:"btn btn-success btn-sm", method: :post %>
+          <% end %>
+        </div>
+      <% end %>
       <div class = "d-inline-block ml-5">
         <% if post.favorited_by?(current_end_user) %>
           <p>
