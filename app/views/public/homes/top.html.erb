@@ -1,7 +1,7 @@
 <div class = "w-100", style = "height:95vh overflow-auto">
-  <div class = "h-50">
+  <div class = "h-50  overflow-auto">
     <h2 class = "mb-3">注目のグループ</h2>
-    <div class = "h-75 overflow-auto">
+    <div class = "h-75">
       <% @pickup_groups.each do |group| %>
         <%= link_to group_path(group) do %>
           <div class="d-flex align-items-start mb-3", style = "height:100px;">
