@@ -36,7 +36,7 @@ class Public::GroupCommentsController < ApplicationController
 
   def ensure_guest_user
     if current_end_user.email == "guest@example.com"
-      redirect_to request.referer,notice:"ゲストユーザーでは使用できませんできません。"
+      redirect_to request.referer,notice:"ゲストユーザーでは使用できません。"
     end
   end
 

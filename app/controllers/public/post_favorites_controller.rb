@@ -2,7 +2,7 @@ class Public::PostFavoritesController < ApplicationController
 
   before_action :ensure_guest_user
   before_action :end_user_sign_in?
-  
+
 
   def create
     post = Post.find(params[:post_id])
@@ -24,10 +24,10 @@ class Public::PostFavoritesController < ApplicationController
 
   def ensure_guest_user
     if current_end_user.email == "guest@example.com"
-      redirect_to request.referer,notice:"ゲストユーザーでは使用できませんできません。"
+      redirect_to request.referer,notice:"ゲストユーザーでは使用できません。"
     end
   end
-  
+
   def end_user_sign_in?
     unless end_user_signed_in?
       redirect_to new_end_user_session_path
