@@ -88,7 +88,7 @@ class Public::EndUsersController < ApplicationController
 
   def ensure_guest_user
     if current_end_user.email == "guest@example.com"
-      redirect_to root_path,notice:"ゲストユーザーでは使用できませんできません。"
+      redirect_to root_path,notice:"ゲストユーザーでは使用できません。"
     end
   end
 
