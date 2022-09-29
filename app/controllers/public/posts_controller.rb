@@ -14,8 +14,10 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     #投稿したユーザーのIDを設定
     @post.end_user_id = current_end_user.id
+    #送信された本文からscoreを設定
+    @post.score = Language.get_data(params[:post][:body])
     #送信されたタグを変数に定義
-    tag_list=params[:post][:tag_name].split(/ |　/)
+    tag_list = params[:post][:tag_name].split(/ |　/)
     if @post.save
       #タグの保存
       @post.save_tag(tag_list)
@@ -39,8 +41,7 @@ class Public::PostsController < ApplicationController
   def popular_index
     to  = Time.current.at_end_of_day
     from  = (to - 6.day).at_beginning_of_day
-    @posts = Post.includes(:post_favorites).
-      sort {|a,b|
+    @posts = Post.includes(:post_favorites).sort {|a,b|
         b.post_favorites.where(created_at: from...to).size <=>
         a.post_favorites.where(created_at: from...to).size
       }
@@ -52,6 +53,8 @@ class Public::PostsController < ApplicationController
 
   def update
     @post = Post.find(params[:id])
+    #送信された本文からscoreを再設定
+    @post.score = Language.get_data(params[:post][:body])
     #送信されたタグを変数に定義
     tag_list=params[:post][:tag_name].split(/ |　/)
     if @post.update(post_params)
