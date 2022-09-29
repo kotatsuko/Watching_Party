@@ -20,5 +20,6 @@ module WatchingParty
     # config.eager_load_paths << Rails.root.join("extras")
     config.time_zone = 'Asia/Tokyo'
     config.action_cable.mount_path = '/websocket'
+    config.paths.add 'lib', eager_load: true
   end
 end
