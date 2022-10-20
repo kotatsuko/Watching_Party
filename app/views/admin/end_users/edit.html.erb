@@ -24,9 +24,9 @@
         </div>
         <div class="col-4 mt-3">
           <%= f.radio_button :is_deleted, :false %>
-          <%= f.label :is_deleted, "有効", class: "text-secondary font-weight-bold" %>
+          <%= f.label :is_deleted, "有効", value: false, class: "text-secondary font-weight-bold" %>
           <%= f.radio_button :is_deleted, :true %>
-          <%= f.label :is_deleted, "退会", class: "text-secondary font-weight-bold" %>
+          <%= f.label :is_deleted, "退会", value: true, class: "text-secondary font-weight-bold" %>
         </div>
       </div>
 
