@@ -5,6 +5,8 @@ class Post < ApplicationRecord
   has_many :post_favorites, dependent: :destroy
   has_many :post_tags, dependent: :destroy
   has_many :tags, through: :post_tags
+  
+  has_many :week_favorites, -> { where(created_at: ((Time.current.at_end_of_day - 6.day).at_beginning_of_day)..(Time.current.at_end_of_day)) }, class_name: 'PostFavorite'
 
   validates :body, presence: true
 

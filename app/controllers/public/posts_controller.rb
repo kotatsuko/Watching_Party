@@ -39,12 +39,8 @@ class Public::PostsController < ApplicationController
 
   # #一週間で多くいいねされた順に並べ替え
   def popular_index
-    to  = Time.current.at_end_of_day
-    from  = (to - 6.day).at_beginning_of_day
-    @posts = Post.includes(:post_favorites).sort {|a,b|
-        b.post_favorites.where(created_at: from...to).size <=>
-        a.post_favorites.where(created_at: from...to).size
-      }
+
+    @posts = Post.left_joins(:week_favorites).group(:id).order("count(post_favorites.post_id) desc")
   end
 
   def edit

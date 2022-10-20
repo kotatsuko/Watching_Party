@@ -28,3 +28,19 @@ h4 {
   font-family: monospace;
   font-weight:bold;
 }
+
+
+
+
+
+.img-100-100-cover{
+width: 100px;
+height: 100px;
+object-fit: cover;
+}
+
+.img-200-200-contain{
+width: 200px;
+height: 200px;
+object-fit: contain;
+}
