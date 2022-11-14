@@ -16,6 +16,8 @@ class EndUser < ApplicationRecord
   has_many :followings, through: :relationships, source: :followed
   has_many :followers, through: :reverse_of_relationships, source: :follower
 
+  validates :name, presence: true, length: { maximum: 50 }
+
   #ユーザー画像
   has_one_attached :end_user_image
   #ユーザー画像の
@@ -28,12 +30,12 @@ class EndUser < ApplicationRecord
   def follow(end_user_id)
     relationships.create(followed_id: end_user_id)
   end
-  
+
   #フォローを外す処理
   def unfollow(end_user_id)
     relationships.find_by(followed_id: end_user_id).destroy
   end
-  
+
   #フォローしているかを判定
   def following?(end_user)
     followings.include?(end_user)

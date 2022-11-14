@@ -18,20 +18,8 @@
           <% end %>
         </div>
       <% end %>
-      <div class = "d-inline-block ml-5">
-        <% if post.favorited_by?(current_end_user) %>
-          <p>
-            <%= link_to post_post_favorites_path(post), method: :delete do %>
-              ♥<%= post.post_favorites.count %> いいね
-            <% end %>
-          </p>
-          <% else %>
-          <p>
-            <%= link_to post_post_favorites_path(post), method: :post do %>
-              ♡<%= post.post_favorites.count %> いいね
-            <% end %>
-          </p>
-        <% end %>
+      <div class = "d-inline-block ml-5", id = "post_favorite_btn<%= post.id %>">
+        <%= render "public/post_favorites/post_favorite_btn", post:post %>
       </div>
       <div class = "d-inline-block ml-3">
         <%= post.post_comments.count %>コメント

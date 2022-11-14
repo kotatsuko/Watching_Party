@@ -1,5 +1,11 @@
 <div style = "height:95vh;",  id = "comment-full w-100">
   <div class = "w-100 h-75 border overflow-auto", id = "group_comment_container">
+    <% if @group_comments.blank? %>
+      <h3>
+        コメントを打ち込むとここに表示されます
+      </h3>
+      <% end %>
+    <% end %>
     <%= render @group_comments %>
   </div>
   <% if @group.watching? %>
