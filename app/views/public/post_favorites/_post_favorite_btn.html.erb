@@ -1,0 +1,13 @@
+<% if post.favorited_by?(current_end_user) %>
+  <p>
+    <%= link_to post_post_favorites_path(post), method: :delete, remote:true do %>
+      ♥<%= post.post_favorites.count %> いいね
+    <% end %>
+  </p>
+  <% else %>
+  <p>
+    <%= link_to post_post_favorites_path(post), method: :post, remote:true do %>
+      ♡<%= post.post_favorites.count %> いいね
+    <% end %>
+  </p>
+<% end %>

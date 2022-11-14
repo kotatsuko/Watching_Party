@@ -2,7 +2,7 @@
 <div class = "login_form text-center ml-auto mr-auto mt-5 mb-5 w-75">
   <div class = "text-left">
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-
+      <%= render 'public/shared/error_messages', model: f.object  %>
 
       <div class="field">
         <%= f.label :name, "ユーザーネーム　" %>
@@ -31,3 +31,4 @@
   </div>
 </div>
 <%= render "public/shared/links" %>
+
