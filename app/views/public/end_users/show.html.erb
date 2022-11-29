@@ -10,23 +10,23 @@
         </div>
         <div class = "d-inline-block ml-3">
           <%= link_to end_user_followings_path(@end_user) do %>
-            <%= @end_user.followings.count %>フォロー
+            <span>
+              <%= @end_user.followings.count %>フォロー
+            </span>
           <% end %>
           <%= link_to end_user_followers_path(@end_user) do %>
-            <%= @end_user.followers.count %>フォロワー
+            <span id = "follower_count">
+              <%= @end_user.followers.count %>フォロワー
+            </span>
           <% end %>
           <%= link_to end_user_my_groups_path(@end_user) do %>
-            <%= @end_user.groups.count %>グループ参加中
+            <span>
+              <%= @end_user.groups.count %>グループ参加中
+            </span>
           <% end %>
         </div>
-        <div class = "d-inline-block">
-          <% if @end_user != @current_end_user %>
-            <% if @current_end_user.following?(@end_user) %>
-              <%= link_to "フォローを外す", end_user_relationships_path(@end_user.id),class:"btn btn-info", method: :delete %>
-            <% else %>
-              <%= link_to "フォローする", end_user_relationships_path(@end_user.id),class:"btn btn-success", method: :post %>
-            <% end %>
-          <% end %>
+        <div class = "d-inline-block", id = "relationships_btn_<%= @end_user.id %>">
+          <%= render "public/relationships/relationship_btn", end_user:@end_user, current_end_user:@current_end_user %>
         </div>
       </div>
       <div>

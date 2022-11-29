@@ -52,7 +52,7 @@
     <% if current_end_user.email != "guest@example.com" %>
       <div class = "relationships_info">
         <%= link_to end_user_followings_path(current_end_user) do %>
-          <spap>
+          <spap id = "follow_count">
             <%= current_end_user.followings.count %>フォロー
           </spap>
         <% end %>

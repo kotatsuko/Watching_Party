@@ -11,9 +11,9 @@ class Public::PostCommentsController < ApplicationController
     comment = current_end_user.post_comments.new(post_comment_params)
     comment.post_id = @post.id
     if comment.save
-      redirect_to post_path(@post)
+
     else
-      @post_comment = PostComment.new
+      @post_comment = comment
       @post_comments = @post.post_comments.order(created_at: :desc)
       render "public/posts/show"
     end
@@ -22,7 +22,7 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     PostComment.find(params[:id]).destroy
     @post=Post.find(params[:post_id])
-    redirect_to post_path(@post)
+
   end
 
 
