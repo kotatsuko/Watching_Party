@@ -12,6 +12,7 @@ class Public::GroupCommentsController < ApplicationController
     if @group_comment.save
       #ActionCableを用いてグループコメントを送信
       ActionCable.server.broadcast 'live_channel', {group_comment: @group_comment.template}
+      @group_comments = group.group_comments.order(created_at: :desc)
     else
       render "groups/show"
     end
@@ -21,7 +22,7 @@ class Public::GroupCommentsController < ApplicationController
     group = Group.find(params[:group_id])
     group_comment = group.group_comments.find(params[:id])
     group_comment.destroy
-    redirect_to group_path(group)
+    ActionCable.server.broadcast 'destroy_channel', {group_comment_id: group_comment.id}
   end
 
 

@@ -1,1 +1,3 @@
 $("#group_btn<%= @group.id %>").html("<%= j(render "public/groups/group_btn", group:@group) %>");
+$("#group_members").html("<%= j(render "layouts/group_members", group:@group) %>");
+$("#group_comment_container").html("<%= j(render @group_comments) %>");

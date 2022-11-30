@@ -1,1 +1,2 @@
-document.getElementById('group_comment_content').value = ''
+$("#group_comment_area").val("");
+$("#group_comment_container").html("<%= j(render @group_comments) %>");

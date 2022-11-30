@@ -14,6 +14,7 @@ consumer.subscriptions.create("LiveChannel", {
     const element = document.querySelector('#group_comment_container')
     // 上で指定したdivの中に送信されたグループコメントを一番上に挿入
     element.insertAdjacentHTML('afterbegin', data['group_comment'])
+
     // Called when there's incoming data on the websocket for this channel
   },
 

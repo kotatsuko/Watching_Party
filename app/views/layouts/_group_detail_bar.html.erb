@@ -29,20 +29,7 @@
 </div>
 <div class = "group_member border", style = "height:35vh">
   <h4>メンバー</h4>
-  <div class = "overflow-auto", style = "height:30vh">
-    <% group.end_users.each do |end_user| %>
-      <div class = "mt-1">
-        <div class = "d-inline-block">
-          <%= link_to end_user_path(end_user) do %>
-            <%= image_tag end_user.get_end_user_image, :width => '50', :height => '50' %>
-          <% end %>
-        </div>
-        <div class = "d-inline-block">
-          <%= link_to end_user_path(end_user) do %>
-            <%= end_user.name %><% if end_user.id == group.owner_user_id %>【オーナー】 <% end %>
-          <% end %>
-        </div>
-      </div>
-    <% end %>
+  <div class = "overflow-auto", id = "group_members", style = "height:30vh">
+    <%= render "layouts/group_members", group:group %>
   </div>
 </div>
