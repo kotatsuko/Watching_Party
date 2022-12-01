@@ -6,22 +6,22 @@
 
       <div class="field">
         <%= f.label :name, "ユーザーネーム　" %>
-        <%= f.text_field :name,size: "40X5" %>
+        <%= f.text_field :name,size: "40X5", class:"log_area" %>
       </div>
 
       <div class="field">
         <%= f.label :email, "メールアドレス　" %>
-        <%= f.email_field :email, autocomplete: "email",size: "40X5" %>
+        <%= f.email_field :email, autocomplete: "email",size: "40X5", class:"log_area" %>
       </div>
 
       <div class="field">
         <%= f.label :password, "パスワード　　　" %>
-        <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上",size: "40X5" %>
+        <%= f.password_field :password, autocomplete: "new-password", placeholder: "6文字以上",size: "40X5", class:"log_area" %>
       </div>
 
       <div class="field">
         <%= f.label :password_confirmation, "パスワード確認用" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password",size: "40X5" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",size: "40X5", class:"log_area" %>
       </div>
 
       <div class="actions">

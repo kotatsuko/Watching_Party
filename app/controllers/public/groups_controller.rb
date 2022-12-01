@@ -97,14 +97,14 @@ class Public::GroupsController < ApplicationController
   def join
     @group = Group.find(params[:group_id])
     @group.end_users << current_end_user
-    redirect_to  request.referer
+    @group_comments = @group.group_comments.order(created_at: :desc)
   end
 
   #グループから抜ける処理
   def leave
     @group = Group.find(params[:group_id])
     @group.end_users.delete(current_end_user)
-    redirect_to  request.referer
+
   end
 
 

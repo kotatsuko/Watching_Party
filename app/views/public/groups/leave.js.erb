@@ -1,0 +1,3 @@
+$("#group_btn<%= @group.id %>").html("<%= j(render "public/groups/group_btn", group:@group) %>");
+$("#group_comment_container").html("<h3>同時視聴のコメントを観覧、投稿したい場合は、グループに参加してください</h3>");
+$("#group_members").html("<%= j(render "layouts/group_members", group:@group) %>");

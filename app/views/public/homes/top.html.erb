@@ -19,11 +19,11 @@
       <% end %>
     </div>
   </div>
-  <div class = "h-50 mt-3">
+  <div class = "mt-3", style = "height:45%">
     <h2>注目の投稿</h2>
     <div class = "h-75 d-flex align-items-start overflow-auto">
       <% @pickup_posts.each do |post| %>
-        <div class = "d-inline-block w-25 h-75d-flex flex-column">
+        <div class = "d-inline-block w-25 h-75 border d-flex flex-column">
           <div>
             <%= link_to end_user_path(post.end_user) do %>
               <p><%= post.end_user.name %></p>

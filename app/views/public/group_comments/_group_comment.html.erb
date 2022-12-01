@@ -1,11 +1,17 @@
-<div class "w-100 border">
-  <div class = "d-inline-block w-25">
+<div class = "border w-100 d-flex align-items-center", id = "group_comment_<%= group_comment.id %>">
+  <div class = "d-inline-block w-25 text-wrap text-break">
+    <%= image_tag group_comment.end_user.get_end_user_image, class:'img-50-50-contain rounded-circle border' %>
     <%= group_comment.end_user.name %>
   </div>
-  <div class = "d-inline-block w-50">
+  <div class = "d-inline-block text-wrap text-break", style = "width:40%;">
     <%= group_comment.body %>
   </div>
-  <div class = "d-inline-block">
+  <div class = "d-inline-block text-wrap text-break">
     <%= group_comment.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
   </div>
+  <% if group_comment.end_user == current_end_user || group_comment.group.owner_user_id == current_end_user %>
+    <div class = "d-inline-block">
+      <%= link_to "削除", group_group_comment_path(group_comment.group,group_comment), remote:true, method: :delete, class: "btn btn-sm btn-danger"  %>
+    </div>
+  <% end %>
 </div>
