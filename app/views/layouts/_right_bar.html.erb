@@ -1,18 +1,18 @@
-  <div class="search_form">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-      <%= f.text_field :word %>
-      <%= f.select :data_type, options_for_select([["グループ"], ["投稿"],["ユーザー"]]) %>
-      <%= f.submit "検索", class: "btn btn-primary" %>
-    <% end %>
-  </div>
+<div class="search_form">
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word %>
+    <%= f.select :data_type, options_for_select([["グループ"], ["投稿"],["ユーザー"]]) %>
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+</div>
 <div class = "starting_soon">
   <h3>もうすぐ開始</h3>
   <div class = "d-flex">
     <% @starting_soon_groups.each do |group| %>
-      <div>
+      <div class = "pickup-content">
         <%= link_to group_path(group) do %>
           <div>
-            <%= image_tag group.get_group_image, class:'img-100-100-cover' %>
+            <%= image_tag group.get_group_image, class:'img-90-90-cover' %>
           </div>
           <div>
             <%= group.name.truncate(9) %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %>
@@ -35,10 +35,10 @@
   <h3>視聴中</h3>
   <div class = "d-flex">
     <% @watching_groups.each do |group| %>
-      <div>
+      <div class = "pickup-content">
         <%= link_to group_path(group) do %>
           <div>
-            <%= image_tag group.get_group_image, class:'img-100-100-cover'  %>
+            <%= image_tag group.get_group_image, class:'img-90-90-cover' %>
           </div>
           <div>
             <%= group.name.truncate(9) %><% if group.owner_user_id == 4 %><span class = "text-success">(公式)</span><% end %>

@@ -13,13 +13,27 @@
   <body>
     <div class = "container-fluid h-100">
       <div class = "row">
-        <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
+        <div class = "col-3 pt-3 bg-light left_bar", id = "menu", style = "height:100vh;">
           <%= render "layouts/admin_left_bar", current_end_user:@current_end_user %>
         </div>
-        <div class = "col-6 pt-3">
+        <div class = "center_top_menu w-100">
+          <div class = "logo">
+            <%= link_to root_path do %>
+              <img src = "https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching%20Party.png" height="100%">
+            <% end %>
+            <div id="hm-icon">
+              <a class="menu-trigger" href="#">
+                <span></span>
+                <span></span>
+                <span></span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class = "col-6 pt-3 center_bar">
           <%= yield %>
         </div>
-        <div class = "col-3 pt-3 bg-light", style = "height:100vh;">
+        <div class = "col-3 pt-3 bg-light right_bar group_right_bar", style = "height:100vh;">
           <%= render "layouts/admin_group_detail_bar", group:@group %>
         </div>
       </div>

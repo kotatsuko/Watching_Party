@@ -27,7 +27,7 @@
           <%= link_to "削除する", post_path(post), method: :delete, class:"btn btn-danger btn-sm" %>
         </div>
       <% end %>
-      <div>
+      <div class = "text-wrap text-break">
         <%= link_to post_path(post) do %>
           <%= post.body %>
         <% end %>

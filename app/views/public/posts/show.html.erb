@@ -40,7 +40,7 @@
     <% end %>
     </div>
   </div>
-  <div class = "mt-3">
+  <div class = "mt-3 text-wrap text-break">
     <%= @post.body %>
   </div>
   <div class = "mt-5">
@@ -57,7 +57,7 @@
   <% if @current_end_user.email != "guest@example.com" %>
     <div class = "post_comment_form">
       <%= form_with model: [@post,@post_comment], data: {remote: true} do |f| %>
-        <%= f.text_area :body, id:"post_comment_area", size: "90x5" %>
+        <%= f.text_area :body, class:"input-area", id:"post_comment_area" %>
         <%= f.submit "コメント", class:"btn btn-primary" %>
       <% end %>
     </div>

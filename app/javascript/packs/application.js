@@ -16,3 +16,12 @@ import "../stylesheets/application"
 Rails.start()
 Turbolinks.start()
 ActiveStorage.start()
+
+
+$(document).on('turbolinks:load', function() {
+  $('.menu-trigger').on('click', function(event) {
+    $(this).toggleClass('active');
+    $('#menu').fadeToggle();
+    event.preventDefault();
+  });
+});

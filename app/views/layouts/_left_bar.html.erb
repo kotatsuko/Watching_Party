@@ -1,6 +1,6 @@
 <div class = "logo text-center">
   <%= link_to root_path do %>
-    <img src = "https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching%20Party.png" width="80%">
+    <img src = "https://raw.githubusercontent.com/kotatsuko/Watching_Party/main/app/assets/images/Watching%20Party.png" width="80%" class = "left_bar_logo">
   <% end %>
 </div>
 <div class = "main_menu text-center mt-3">
@@ -35,12 +35,19 @@
     <% end %>
   <% end %>
 </div>
+<div class="search_form">
+  <%= form_with url: search_path, local: true, method: :get do |f| %>
+    <%= f.text_field :word %>
+    <%= f.select :data_type, options_for_select([["グループ"], ["投稿"],["ユーザー"]]) %>
+    <%= f.submit "検索", class: "btn btn-primary" %>
+  <% end %>
+</div>
 <% if end_user_signed_in? %>
-  <div class = "end_user_info ml-5 mt-5">
+  <div class = "end_user_info">
     <div class = "end_user_name">
       <%= link_to end_user_path(current_end_user) do %>
         <div>
-          <%= image_tag current_end_user.get_end_user_image, :width => '100', :height => '100' %>
+          <%= image_tag current_end_user.get_end_user_image, class:"img-100-100-cover" %>
         </div>
       <% end %>
       <%= link_to end_user_path(current_end_user) do %>
